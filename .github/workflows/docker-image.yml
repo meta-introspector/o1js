@@ -15,5 +15,8 @@ jobs:
 
     steps:
     - uses: meta-introspector/checkout@v4
+      with: 
+        submodules: recursive
+    
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
