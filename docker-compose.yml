@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  mina-local-network:
+    restart: no
+    image: o1js-build
+    build: .
+    environment:
+      - PROOF_LEVEL=full
+      - LOG_LEVEL=Debug
+    working_dir: /app

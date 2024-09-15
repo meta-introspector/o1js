@@ -20,3 +20,7 @@ jobs:
     
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    - name: Build the Docker image via docker compose
+      run: docker compose build 
+    - name: run the Docker tests
+      run: docker compose up
