@@ -11,4 +11,4 @@ services:
     working_dir: /app
     cap_add:
       - SYS_PTRACE
-    command: "strace -f -o strace.txt pnpm run test"
+    command: "strace -f -o /tmp/strace.txt pnpm run test"
