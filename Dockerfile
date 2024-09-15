@@ -79,12 +79,18 @@ RUN opam install -y async
 RUN opam install -y Core_kernel
 RUN opam install -y re2
 RUN opam install -y ctypes
-RUN opam install -y digestif.ocaml
-RUN opam install -y hash_prefix_create.js
-RUN opam install -y  logger.fake
-RUN opam install -y  promise.js
-RUN opam install -y   promise.js_helpers
-RUN opam install -y  run_in_thread.fake
+RUN opam install -y digestif
+#RUN opam install -y hash_prefix_create
+#RUN opam install -y  logger.fake
+RUN opam install -y  promise
+#RUN opam install -y   promise.js_helpers
+RUN opam install -y  zarith_stubs_js
+#RUN opam install -y  tuple_lib
+#RUN opam install -y  unsigned_extended
+#RUN opam install -y  with_hash
+#RUN opam install -y  bindings_js
+RUN opam install -y  integers_stubs_js
+
 
 RUN opam exec -- pnpm run build:bindings
 RUN pnpm run build
