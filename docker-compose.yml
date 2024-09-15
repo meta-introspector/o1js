@@ -9,3 +9,6 @@ services:
       - PROOF_LEVEL=full
       - LOG_LEVEL=Debug
     working_dir: /app
+    cap_add:
+      - SYS_PTRACE
+    command: "strace -f -o strace.txt pnpm run test"

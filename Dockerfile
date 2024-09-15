@@ -32,6 +32,9 @@ RUN pnpm install jest
 COPY run-jest-tests.sh /app/run-jest-tests.sh
 COPY jest.config.js /app/jest.config.js
 
+RUN apt update
+RUN apt install -y strace
+
 CMD [ "pnpm", "run", "test" ]
 
 #RUN pnpm run test || echo skip errors
