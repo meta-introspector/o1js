@@ -25,7 +25,7 @@ jobs:
     - name: run the Docker tests
       run: docker compose up
     - name: docker cp strace.txt
-      run: docker cp strace.txt:strace.txt
+      run: docker compose cp mina-local-network:strace.txt strace.txt
     - name: list files
       run: find . 
     - name: Archive code coverage results
