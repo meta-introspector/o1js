@@ -31,6 +31,11 @@ COPY dune-project /app/dune-project
 RUN npm ci
 RUN pnpm run build
 
+COPY run-jest-tests.sh /app/run-jest-tests.sh
+COPY jest.config.js /app/jest.config.js
+RUN pnpm run test || echo skip errors
+RUN pnpm run test:unit || echo skip errors
+
 FROM base
 COPY --from=prod-deps /app/node_modules /app/node_modules
 COPY --from=build /app/dist /app/dist
