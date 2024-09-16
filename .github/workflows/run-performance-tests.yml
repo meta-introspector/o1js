@@ -60,19 +60,19 @@ jobs:
         autocannon-amount: 1
         autocannon-connections: 1
 
-  performance-reporter:
-    needs: [doctor-performance-tests, flame-performance-tests]
-    runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: write
-      packages: read
-      pull-requests: write
-      actions: read
+  # performance-reporter:
+  #   needs: [doctor-performance-tests, flame-performance-tests]
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     id-token: write
+  #     contents: write
+  #     packages: read
+  #     pull-requests: write
+  #     actions: read
 
-    # steps:
-    # - uses: meta-introspector/checkout@v4
-    # - name: Get all artifacts and publish results in github pages
-    #   uses: ./.github/base-actions/performance-reporter
-    #   with:
-    #     gh-token: ${{ secrets.GITHUB_TOKEN }}
+  #   # steps:
+  #   # - uses: meta-introspector/checkout@v4
+  #   # - name: Get all artifacts and publish results in github pages
+  #   #   uses: ./.github/base-actions/performance-reporter
+  #   #   with:
+  #   #     gh-token: ${{ secrets.GITHUB_TOKEN }}
