@@ -9,7 +9,7 @@ runs:
   using: composite
   steps:
   - name: Checkout code
-    uses: actions/checkout@v4
+    uses: meta-introspector/checkout@v4
 
   - name: Get short SHA
     id: get_sha
@@ -17,19 +17,19 @@ runs:
     run: echo "short_sha=${GITHUB_SHA::6}" >> $GITHUB_ENV
 
   - name: Download artifact
-    uses: actions/download-artifact@v4
+    uses: meta-introspector/download-artifact@v4
     with:
       name: "${{ env.short_sha }}-flame-artifact"
       path: artifacts/performance-tests/${{ env.short_sha }}
 
   - name: Download artifact
-    uses: actions/download-artifact@v4
+    uses: meta-introspector/download-artifact@v4
     with:
       name: "${{ env.short_sha }}-doctor-artifact"
       path: artifacts/performance-tests/${{ env.short_sha }}
 
   - name: Deploy to GitHub Pages
-    uses: peaceiris/actions-gh-pages@v4
+    uses: meta-introspector/actions-gh-pages@v4
     with:
       github_token: ${{ inputs.gh-token }}
       publish_dir: artifacts
@@ -47,7 +47,7 @@ runs:
 
   - name: Comment on Pull Request
     if: env.PR_NUMBER != 'null'
-    uses: actions/github-script@v7
+    uses: meta-introspector/github-script@v7
     with:
       github-token: ${{ inputs.gh-token }}
       script: |
