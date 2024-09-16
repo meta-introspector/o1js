@@ -229,3 +229,7 @@ After the Node.js process is running, open the Chrome browser and navigate to `c
 `docker build . --progress=plain`
 
 `docker image history o1labs/mina-local-network:compatible-latest-lightnet > history.txt`
+
+`docker compose build`
+`docker compose run mina-local-network`
+`docker compose run -it mina-local-network /bin/bash`

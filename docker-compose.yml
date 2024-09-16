@@ -11,16 +11,5 @@ services:
     working_dir: /app
     cap_add:
       - SYS_PTRACE
-    command: "pnpm run test"
+    command: "bash -x /app/run-all-tests.sh"
     # strace -f -o /tmp/strace.txt
-  prometheus:
-    image: prom/prometheus
-    volumes:
-      - "./prometheus.yml:/etc/prometheus/prometheus.yml"
-    networks:
-      - localprom
-    ports:
-      - 9090:9090
-networks:
-  localprom:
-    driver: bridge

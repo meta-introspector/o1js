@@ -28,12 +28,28 @@ COPY dune-project /app/dune-project
 RUN npm ci
 RUN pnpm run build
 RUN pnpm install jest
+RUN pnpm install -g clinic
+#RUN apt update
+#RUN apt install -y strace
 
 COPY run-jest-tests.sh /app/run-jest-tests.sh
 COPY jest.config.js /app/jest.config.js
+COPY run-integration-tests.sh /app/run-integration-tests.sh
+COPY run-unit-tests.sh /app/run-unit-tests.sh
+COPY run-all-tests.sh /app/run-all-tests.sh
+COPY run /app/run
+COPY run-debug /app/run-debug
+COPY run-minimal-mina-tests.sh /app/run-minimal-mina-tests.sh
+COPY run-ci-benchmarks.sh /app/run-ci-benchmarks.sh
 
-RUN apt update
-RUN apt install -y strace
+# why?
+RUN ln -s /app/dist /app/src/mina-signer/dist
+
+# '/app/dist/node/bindings/compiled/_node_bindings/plonk_wasm.cjs' imported from /app/dist/node/bindings/js/node/node-backend.js
+# found here
+#./src/bindings/compiled/node_bindings/plonk_wasm.cjs
+#./src/bindings/compiled/_node_bindings/plonk_wasm.cjs
+#./dist/node/bindings/compiled/_node_bindings/plonk_wasm.cjs
 
 CMD [ "pnpm", "run", "test" ]
 
