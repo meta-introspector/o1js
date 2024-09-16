@@ -17,6 +17,9 @@ importers:
       isomorphic-fetch:
         specifier: ^3.0.0
         version: 3.0.0
+      jest-cli:
+        specifier: link:/home/mdupont/2024/09/16/jest/packages/jest-cli/
+        version: link:../../../../../../../../../home/mdupont/2024/09/16/jest/packages/jest-cli
       js-sha256:
         specifier: ^0.9.0
         version: 0.9.0
