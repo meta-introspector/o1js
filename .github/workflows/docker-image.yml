@@ -24,12 +24,14 @@ jobs:
       run: docker compose build 
     - name: run the Docker tests
       run: docker compose up
-    - name: docker cp strace.txt
-      run: docker compose cp mina-local-network:/tmp/strace.txt strace.txt
+#    - name: docker cp strace.txt
+#      run: docker compose cp mina-local-network:/tmp/strace.txt strace.txt
     - name: list files
       run: find . 
-    - name: Archive code coverage results
-      uses: meta-introspector/upload-artifact@v4
-      with:
-          name: strace.txt
-          path: strace.txt
+    - name: list files docker
+      run: docker compose run find . 
+    # - name: Archive code coverage results
+    #   uses: meta-introspector/upload-artifact@v4
+    #   with:
+    #       name: strace.txt
+    #       path: strace.txt
