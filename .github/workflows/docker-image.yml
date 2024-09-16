@@ -29,7 +29,7 @@ jobs:
     - name: list files
       run: find . 
     - name: list files docker
-      run: docker compose run find . 
+      run: docker compose run mina-local-network /bin/find . 
     # - name: Archive code coverage results
     #   uses: meta-introspector/upload-artifact@v4
     #   with:
