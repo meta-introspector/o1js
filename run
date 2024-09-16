@@ -1,2 +1,2 @@
+clinic doctor --collect-only -- node --perf-basic-prof --enable-source-maps --stack-trace-limit=1000 src/build/run.js $@
 
-clinic doctor -- node --perf-basic-prof --enable-source-maps --stack-trace-limit=1000 src/build/run.js $@

@@ -7,10 +7,10 @@ set +e
 
 #######
 find /app > /tmp/app-files-list.txt
-NO_INSIGHT=true clinic doctor -- node /usr/local/bin/pnpm run test
-NO_INSIGHT=true clinic doctor -- node /usr/local/bin/pnpm run test:integration
-NO_INSIGHT=true clinic doctor -- node /usr/local/bin/pnpm run test:unit
-NO_INSIGHT=true clinic doctor -- node /usr/local/bin/pnpm run test:e2e
+NO_INSIGHT=true clinic doctor --collect-only -- node /usr/local/bin/pnpm run test
+NO_INSIGHT=true clinic doctor --collect-only -- node /usr/local/bin/pnpm run test:integration
+NO_INSIGHT=true clinic doctor --collect-only -- node /usr/local/bin/pnpm run test:unit
+NO_INSIGHT=true clinic doctor --collect-only -- node /usr/local/bin/pnpm run test:e2e
 
 #######
 NO_INSIGHT=true clinic flame -- node /usr/local/bin/pnpm run test
