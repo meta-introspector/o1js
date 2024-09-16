@@ -1,0 +1,76 @@
+name: Run performance tests
+
+on:
+  push:
+    branches:
+      - master
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+      - support/*
+      - revert-*
+      - dependabot/*
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+
+jobs:
+  doctor-performance-tests:
+    runs-on: ubuntu-latest
+    permissions:
+        id-token: write
+        contents: read
+        packages: read
+        actions: write
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Run Doctor (ClinicJS)
+      uses: ./.github/base-actions/clinicjs-toolkit
+      with:
+        gh-token: ${{ secrets.GITHUB_TOKEN }}
+        clinic-tool: doctor
+        javascript-file: dist/server.js
+        autocannon-endpoint: /process-simulator
+        artifact-suffix: doctor-artifact
+
+  flame-performance-tests:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+      packages: read
+      actions: write
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Run Flame (ClinicJS)
+      uses: ./.github/base-actions/clinicjs-toolkit
+      with:
+        gh-token: ${{ secrets.GITHUB_TOKEN }}
+        clinic-tool: flame
+        javascript-file: dist/server.js
+        autocannon-endpoint: /process-simulator
+        artifact-suffix: flame-artifact
+        autocannon-amount: 1
+        autocannon-connections: 1
+
+  performance-reporter:
+    needs: [doctor-performance-tests, flame-performance-tests]
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
+      packages: read
+      pull-requests: write
+      actions: read
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Get all artifacts and publish results in github pages
+      uses: ./.github/base-actions/performance-reporter
+      with:
+        gh-token: ${{ secrets.GITHUB_TOKEN }}
