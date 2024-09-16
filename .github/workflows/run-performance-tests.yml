@@ -1,16 +1,18 @@
 name: Run performance tests
 
 on:
-  push:
-    branches:
-      - master
-      - main
-      - feature/*
-      - hotfix/*
-      - release/*
-      - support/*
-      - revert-*
-      - dependabot/*
+  workflow_dispatch:
+  repository_dispatch:
+  # push:
+  #   branches:
+  #     - master
+  #     - main
+  #     - feature/*
+  #     - hotfix/*
+  #     - release/*
+  #     - support/*
+  #     - revert-*
+  #     - dependabot/*
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -27,7 +29,7 @@ jobs:
         actions: write
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: meta-introspector/checkout@v4
     - name: Run Doctor (ClinicJS)
       uses: ./.github/base-actions/clinicjs-toolkit
       with:
@@ -46,7 +48,7 @@ jobs:
       actions: write
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: meta-introspector/checkout@v4
     - name: Run Flame (ClinicJS)
       uses: ./.github/base-actions/clinicjs-toolkit
       with:
@@ -68,9 +70,9 @@ jobs:
       pull-requests: write
       actions: read
 
-    steps:
-    - uses: actions/checkout@v4
-    - name: Get all artifacts and publish results in github pages
-      uses: ./.github/base-actions/performance-reporter
-      with:
-        gh-token: ${{ secrets.GITHUB_TOKEN }}
+    # steps:
+    # - uses: meta-introspector/checkout@v4
+    # - name: Get all artifacts and publish results in github pages
+    #   uses: ./.github/base-actions/performance-reporter
+    #   with:
+    #     gh-token: ${{ secrets.GITHUB_TOKEN }}
