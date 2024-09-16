@@ -3,16 +3,17 @@ name: Run performance tests
 on:
   workflow_dispatch:
   repository_dispatch:
-  push:
-    branches:
-      - master
-      - main
-      - feature/*
-      - hotfix/*
-      - release/*
-      - support/*
-      - revert-*
-      - dependabot/*
+  # currently focusing on the docker 
+  #push:
+  #  branches:
+  #    - master
+  #    - main
+  #    - feature/*
+  #    - hotfix/*
+  #    - release/*
+  #    - support/*
+  #    - revert-*
+  #    - dependabot/*
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
