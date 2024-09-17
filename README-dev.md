@@ -354,3 +354,33 @@ for all projects p:
 														and operation
 														* operator
 
+
+
+# running test
+
+`make` will run `docker build .` that will trigger creating of the image.
+
+## Committing test
+
+`~/2024/08/02/mina/o1js$ docker commit a4fcb9ec4901 mina-test1`
+
+`sha256:9b707295a1fa7ac2541b946bc9cc68a90823a10f52b32268848c17dff3799f4a`
+
+## docker images
+| REPOSITORY| TAG| IMAGE| ID| CREATED| SIZE|
+| mina-test1| latest| 9b707295a1fa| 54| seconds| ago| 12.9GB|
+| o1js-build| latest| a8e0a0173b63| 4| hours| ago| 2.18GB|
+
+This shows a huge 10 gb of data collected, the newer image is mina1-test1
+
+## Create docker hub repo to hold data
+
+Using docker hub create a repo to hold the data.
+
+### Tag Image
+
+`docker tag mina-test1 h4ckermike/o1js-clinicjs-data:sept-17-2024`
+
+### Push Image
+
+`docker push h4ckermike/o1js-clinicjs-data:sept-17-2024`
