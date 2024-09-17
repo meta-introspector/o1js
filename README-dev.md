@@ -233,3 +233,6 @@ After the Node.js process is running, open the Chrome browser and navigate to `c
 `docker compose build`
 `docker compose run mina-local-network`
 `docker compose run -it mina-local-network /bin/bash`
+
+to update the pnpm lock
+`pnpm install --no-frozen-lockfile`

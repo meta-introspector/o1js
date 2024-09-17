@@ -24,7 +24,8 @@ COPY tests /app/tests
 COPY benchmark /app/benchmark
 COPY jest /app/jest
 COPY dune-project /app/dune-project
-
+RUN apt update
+RUN apt install -y git
 RUN npm ci
 RUN pnpm run build
 RUN pnpm install jest

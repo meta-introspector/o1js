@@ -26,10 +26,13 @@ jobs:
       run: docker compose up
 #    - name: docker cp strace.txt
 #      run: docker compose cp mina-local-network:/tmp/strace.txt strace.txt
-    - name: list files
-      run: find . 
     - name: list files docker
-      run: docker compose run mina-local-network /bin/find . 
+      run: docker compose run mina-local-network /bin/find /app/.clinic/
+    - name: docker cp strace.txt
+      run: docker compose cp mina-local-network:/app/.clinic clinic
+    - name: list files
+      run: find clinic
+
     # - name: Archive code coverage results
     #   uses: meta-introspector/upload-artifact@v4
     #   with:
