@@ -24,7 +24,6 @@ COPY tests /app/tests
 COPY benchmark /app/benchmark
 COPY jest /app/jest
 COPY dune-project /app/dune-project
-COPY vendor /app/vendor 
 
 RUN npm ci
 RUN pnpm run build
