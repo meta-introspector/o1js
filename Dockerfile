@@ -9,7 +9,7 @@ WORKDIR /app
 
 ADD pnpm-lock.yaml pnpm-lock.yaml
 ADD package.json package.json
-ADD package-lock.json package-lock.json
+#ADD package-lock.json package-lock.json
 ADD tsconfig.examples.json tsconfig.examples.json
 ADD tsconfig.json tsconfig.json
 ADD tsconfig.mina-signer.json tsconfig.mina-signer.json
@@ -26,7 +26,16 @@ COPY tests /app/tests
 COPY benchmark /app/benchmark
 COPY jest /app/jest
 COPY dune-project /app/dune-project
-RUN npm ci
+
+#RUN pnpm ci
+RUN corepack enable
+RUN corepack prepare pnpm@latest-9 --activate
+RUN pnpm install
+#    "dev": "npx tsc -p tsconfig.test.json && node src/build/copy-to-dist.js",
+RUN npx tsc --help || echo 2
+RUN npx tsc --all || echo 2
+RUN npx tsc --version
+RUN npx tsc -p tsconfig.test.json
 RUN pnpm run build
 RUN pnpm install jest
 RUN pnpm install -g clinic
