@@ -1,9 +1,8 @@
 {
-    "name": "o1js",
-    "packageManager": "pnpm@9.10.0+sha512.73a29afa36a0d092ece5271de5177ecbf8318d454ecd701343131b8ebc0c1a91c487da46ab77c8e596d6acf1461e3594ced4becedf8921b074fbd8653ed7051c",
+  "name": "o1js",
+  "packageManager": "pnpm@9.10.0+sha512.73a29afa36a0d092ece5271de5177ecbf8318d454ecd701343131b8ebc0c1a91c487da46ab77c8e596d6acf1461e3594ced4becedf8921b074fbd8653ed7051c",
   "description": "TypeScript framework for zk-SNARKs and zkApps",
-    "version": "1.7.0",
-
+  "version": "1.7.0",
   "license": "Apache-2.0",
   "homepage": "https://github.com/o1-labs/o1js/",
   "repository": {
@@ -94,8 +93,8 @@
     "prettier": "^2.8.4",
     "replace-in-file": "^6.3.5",
     "rimraf": "^3.0.2",
-    "ts-jest": "https://github.com/meta-introspector/ts-jest",
-    "typedoc": "^0.25.8",
+    "ts-jest":"https://github.com/meta-introspector/ts-jest.git",
+    "typedoc": "^0.25.13",
     "typedoc-plugin-markdown": "^4.0.0-next.53",
     "typedoc-plugin-merge-modules": "^5.1.0",
     "typescript": "^5.4.5"
@@ -106,6 +105,7 @@
     "isomorphic-fetch": "^3.0.0",
     "jest-cli": "https://github.com/meta-introspector/jest.git",
     "js-sha256": "^0.9.0",
+    "npm": "10.8.3",
     "reflect-metadata": "^0.1.13",
     "tslib": "^2.3.0"
   }

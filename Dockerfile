@@ -2,6 +2,8 @@ FROM node:20-slim AS base
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
+RUN apt update
+RUN apt install -y git
 
 WORKDIR /app
 
@@ -24,8 +26,6 @@ COPY tests /app/tests
 COPY benchmark /app/benchmark
 COPY jest /app/jest
 COPY dune-project /app/dune-project
-RUN apt update
-RUN apt install -y git
 RUN npm ci
 RUN pnpm run build
 RUN pnpm install jest
