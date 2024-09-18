@@ -36,9 +36,14 @@ RUN npx tsc --help || echo 2
 RUN npx tsc --all || echo 2
 RUN npx tsc --version
 RUN npx tsc -p tsconfig.test.json
+
+RUN pnpm install "https://github.com/meta-introspector/jest.git"
+RUN pnpm install "https://github.com/meta-introspector/ts-jest.git"
+RUN pnpm install "https://github.com/meta-introspector/node-clinic-doctor"
+RUN pnpm install -g "https://github.com/meta-introspector/node-clinic"
+
 RUN pnpm run build
-RUN pnpm install jest
-RUN pnpm install -g clinic
+
 #RUN apt update
 #RUN apt install -y strace
 
