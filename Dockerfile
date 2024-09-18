@@ -40,7 +40,7 @@ RUN npx tsc -p tsconfig.test.json
 RUN pnpm install "https://github.com/meta-introspector/jest.git"
 RUN pnpm install "https://github.com/meta-introspector/ts-jest.git"
 RUN pnpm install "https://github.com/meta-introspector/node-clinic-doctor"
-RUN pnpm install -g "https://github.com/meta-introspector/node-clinic"
+RUN pnpm install "https://github.com/meta-introspector/node-clinic"
 
 RUN pnpm run build
 

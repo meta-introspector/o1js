@@ -276,3 +276,39 @@ Using docker hub create a repo to hold the data.
 pnpm install "https://github.com/meta-introspector/jest.git"
 pnpm install "https://github.com/meta-introspector/ts-jest.git"
 pnpm install "https://github.com/meta-introspector/node-clinic-doctor"
+
+
+```
+strace -s999 -o strace.txt -f -e execve npx jest ./src/lib/mina/token.test.ts
+/home/mdupont/.config/nvm/versions/node/v18.17.0/bin/node /home/mdupont/.npm/_npx/b8d86e6551a4f492/node_modules/.bin/jest ./src/lib/mina/token.test.ts
+```
+strace -s999 -o strace.txt -f -e execve npx jest src/lib/provable/test/int.test.ts
+  * 
+/home/mdupont/.config/nvm/versions/node/v18.17.0/bin/node /mnt/data1/nix/time/2024/08/02/mina/o1js/node_modules/.bin/../jest/bin/jest.js src/lib/provable/test/int.test.ts
+oops the wrong one
+/home/mdupont/.config/nvm/versions/node/v20.13.1/bin/node /mnt/data1/nix/time/2024/08/02/mina/o1js/node_modules/.bin/../jest/bin/jest.js src/lib/provable/test/int.test.ts
+
+# run perf and save the data
+perf record  node --perf-basic-prof ./node_modules/.bin/../jest/bin/jest.js 
+perf script > report_perf1.txt
+
+
+# run with custom jest
+This is not working
+```
+pnpm remove jest-circus
+pnpm remove jest
+pnpm remove ts-jest
+pnpm install "https://github.com/meta-introspector/jest.git"
+pnpm install "https://github.com/meta-introspector/ts-jest.git"
+pnpm install
+pnpm build
+
+perf record  node --perf-basic-prof ./node_modules/.pnpm/@jest+monorepo@https+++codeload.github.com+meta-introspector+jest+tar.gz+4a58402556ecd05ca9cc01873db6fbc5596ccc67/node_modules/@jest/monorepo/packages/jest/bin/jest.js src/lib/provable/test/int.test.ts
+```
+# test lengths
+PASS src/lib/mina/precondition.test.ts (11.013 s)
+PASS src/lib/mina/token.test.ts (46.054 s)
+
+
+perf report> report.txt
