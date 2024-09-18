@@ -388,3 +388,4 @@ Using docker hub create a repo to hold the data.
 ## 
 `docker run -v /mnt/data1/:/mnt/data1 -it h4ckermike/o1js-clinicjs-data:sept-17-2024 bash`
 `cp -r .clinic /mnt/data1/nix/time/2024/09/17/o1js/_clinic`
+`sudo chown -R mdupont: _clinic `
