@@ -1,3 +1,4 @@
+```yaml
 for all projects p:
 	for all version v:
 		for all modules and submodules m:
@@ -67,3 +68,4 @@ for all projects p:
 														joint probability
 														and operation
 														* operator
+```
