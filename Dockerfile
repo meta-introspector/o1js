@@ -37,8 +37,8 @@ RUN npx tsc --all || echo 2
 RUN npx tsc --version
 RUN npx tsc -p tsconfig.test.json
 
-RUN pnpm install "https://github.com/meta-introspector/jest.git"
-RUN pnpm install "https://github.com/meta-introspector/ts-jest.git"
+#RUN pnpm install "https://github.com/meta-introspector/jest.git"
+#RUN pnpm install "https://github.com/meta-introspector/ts-jest.git"
 RUN pnpm install "https://github.com/meta-introspector/node-clinic-doctor"
 RUN pnpm install "https://github.com/meta-introspector/node-clinic"
 
@@ -46,7 +46,7 @@ RUN pnpm run build
 
 #RUN apt update
 #RUN apt install -y strace
-
+run apt-get install -y linux-perf # move to top
 COPY run-jest-tests.sh /app/run-jest-tests.sh
 COPY jest.config.js /app/jest.config.js
 COPY run-integration-tests.sh /app/run-integration-tests.sh
@@ -65,6 +65,9 @@ RUN ln -s /app/dist /app/src/mina-signer/dist
 #./src/bindings/compiled/node_bindings/plonk_wasm.cjs
 #./src/bindings/compiled/_node_bindings/plonk_wasm.cjs
 #./dist/node/bindings/compiled/_node_bindings/plonk_wasm.cjs
+
+#run apt-get update
+
 
 CMD [ "pnpm", "run", "test" ]
 

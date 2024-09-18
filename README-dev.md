@@ -289,8 +289,13 @@ oops the wrong one
 /home/mdupont/.config/nvm/versions/node/v20.13.1/bin/node /mnt/data1/nix/time/2024/08/02/mina/o1js/node_modules/.bin/../jest/bin/jest.js src/lib/provable/test/int.test.ts
 
 # run perf and save the data
+This is working
+
+```
 perf record  node --perf-basic-prof ./node_modules/.bin/../jest/bin/jest.js 
 perf script > report_perf1.txt
+```
+
 
 
 # run with custom jest
