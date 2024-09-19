@@ -8,12 +8,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name:Login to GHCR
+      - name: Login to GHCR
         uses: meta-introspector/login-action@v1
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: pull the image
         run: docker pull ghcr.io/meta-introspector/o1js/o1js-perf-recording:latest
       - name: Download a Build Artifact
