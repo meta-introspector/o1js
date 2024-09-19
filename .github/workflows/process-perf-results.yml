@@ -1,7 +1,7 @@
 name: process_perf
 on:
   workflow_dispatch:
-  
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,4 +15,13 @@ jobs:
           skip_unpack: true
       # now run docker
       # mount the data into the container
-    
+      
+      - uses: meta-introspector/checkout@v4
+        with:
+          submodules: recursive
+          
+      - name: Build the reporting Docker image via docker compose
+        run: docker compose build reporting
+        
+      - name: run the report
+        run: docker compose up reporting
