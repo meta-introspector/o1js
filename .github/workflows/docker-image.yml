@@ -1,9 +1,9 @@
-name: Docker Image CI
+name: Build Docker Image and run Perf Test and collect data
 
 on:
   repository_dispatch:
   push:
-    #branches: [ "main" ]
+    branches: [ "collect-perf" ]
   pull_request:
     #branches: [ "main" ]
 
