@@ -1,3 +1,7 @@
+# Performance tools for o1js.
+
+Github actions to build a docker image, and then run linux perf recordings of o1js executions of jest tests are currently available. Am working on reporting now. 
+
 # o1js &nbsp; [![npm version](https://img.shields.io/npm/v/o1js.svg?style=flat)](https://www.npmjs.com/package/o1js) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/o1-labs/o1js/blob/main/CONTRIBUTING.md)
 
 ℹ️ **o1js** is an evolution of [SnarkyJS](https://www.npmjs.com/package/snarkyjs) which saw
