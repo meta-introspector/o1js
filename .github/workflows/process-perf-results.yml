@@ -12,33 +12,7 @@ jobs:
         with:
           workflow_search: true
           commit: 584fd53a9f50126360ab764537f4ae10bd5e3666
-        # github_token: # optional, default is ${{github.token}}
-          #workflow:  docker-image
-          #run_id: 10932397620
-          
-          #Artifact download URL: https://github.com/meta-introspector/o1js/actions/runs/10932397620/artifacts/1950791984
-          # workflow_conclusion: # optional, default is success
-      # Repository name with owner (like actions/checkout)
-      #repo: # optional, default is ${{github.repository}}
-      # Pull request number
-      #pr: # optional
-      ## Commit hash
-    #commit: # optional
-    # Branch name
-    #branch: # optional
-    # Event type
-    #event: # optional
-    # Workflow run id
-    
-    # Workflow run number
-    #run_number: # optional
-    # Artifact name (download all artifacts if not specified)
-    #name: # optional
-    # Where to unpack the artifact
-    #path: # optional, default is ./artifacts
-    # Check workflow run whether it has an artifact
-    #check_artifacts: # optional
-    # Search workflow runs for artifact with specified name
-    #search_artifacts: # optional
-
+          skip_unpack: true
+      # now run docker
+      # mount the data into the container
     
