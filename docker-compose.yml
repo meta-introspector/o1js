@@ -34,4 +34,4 @@ services:
 
     working_dir: /app
     
-    command: "bash -x /app/perf/reporting/perf-report.sh"
+    command: "bash -x /app/perf-reporting/perf-report.sh"
