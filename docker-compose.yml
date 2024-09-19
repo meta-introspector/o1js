@@ -15,10 +15,10 @@ services:
       - SYS_ADMIN
     command: "bash -x /app/run-all-tests.sh"
 
-  perf-reporting:
+  reporting:
     restart: no
     image: perf-reporting
-    build: reporting
+    build: perf-reporting
     volumes:
       - type: bind
         source: "$WORKSPACE_DIR/perf.data.zip"
