@@ -1,4 +1,4 @@
-name: Build Docker Image and run Perf Test and collect data
+name: Build Docker Image and run Publish Docker image
 
 on:
   repository_dispatch:
