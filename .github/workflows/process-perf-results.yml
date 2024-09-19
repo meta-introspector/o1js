@@ -12,7 +12,7 @@ jobs:
         with:
         # github_token: # optional, default is ${{github.token}}
           workflow:  docker-image
-          run_id: 28569249816
+          # run_id: 28569249816
           # workflow_conclusion: # optional, default is success
       # Repository name with owner (like actions/checkout)
       #repo: # optional, default is ${{github.repository}}
