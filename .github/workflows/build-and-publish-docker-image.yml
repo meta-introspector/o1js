@@ -1,0 +1,30 @@
+name: Build Docker Image and run Perf Test and collect data
+
+on:
+  repository_dispatch:
+  push:
+    branches: [ "collect-perf" ]
+  pull_request:
+    #branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: meta-introspector/checkout@v4
+      with: 
+        submodules: recursive
+    
+    #- name: Build the Docker image
+    #  run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    - name: Build the Docker image via docker compose
+      run: docker compose build 
+
+    - name: Docker-Compose Publish  
+      uses: meta-introspector/publish_docker-compose@v0.1.1
+        with:
+          docker_compose: docker-compose.yml
+  
