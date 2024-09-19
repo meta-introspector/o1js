@@ -1,7 +1,7 @@
 name: Build Docker Image and run Publish Docker image
 
 on:
-  repository_dispatch:
+  workflow_dispatch:
   push:
     branches: [ "collect-perf" ]
   pull_request:
