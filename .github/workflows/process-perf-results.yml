@@ -10,9 +10,12 @@ jobs:
       - name: Download a Build Artifact
         uses: meta-introspector/action-download-artifact@v6
         with:
+          commit: 584fd53a9f50126360ab764537f4ae10bd5e3666
         # github_token: # optional, default is ${{github.token}}
           #workflow:  docker-image
-          run_id: 28569249816
+          #run_id: 10932397620
+          
+          #Artifact download URL: https://github.com/meta-introspector/o1js/actions/runs/10932397620/artifacts/1950791984
           # workflow_conclusion: # optional, default is success
       # Repository name with owner (like actions/checkout)
       #repo: # optional, default is ${{github.repository}}
