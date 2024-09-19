@@ -1,6 +1,7 @@
+---
 name: process_perf
 on:
-  workflow_dispatch:
+  workflow_dispatch: null
   push:
     branches:
       - test-perf
@@ -14,7 +15,6 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
       - name: pull the image
         run: docker pull ghcr.io/meta-introspector/o1js/o1js-perf-recording:latest
       - name: Download a Build Artifact
@@ -24,31 +24,18 @@ jobs:
           commit: 584fd53a9f50126360ab764537f4ae10bd5e3666
           skip_unpack: true
           path: data
-      # now run docker
-      # mount the data into the container
       - name: list pwd
         run: pwd
       - name: list
         run: ls -latr data/*.zip
-
       - name: list2
         run: ls -latr /home/runner/work/o1js/o1js/data/perf.data.zip
-
       - name: list pwd
         run: pwd
       - name: list
         run: ls -latr data/*.zip
-
       - name: list2
         run: ls -latr /home/runner/work/o1js/o1js/data/perf.data.zip
-
-      #- name: Build the reporting Docker image via docker compose
-      #  run: docker compose build reporting
-      #  env:
-      #    WORKSPACE_DIR2: $GITHUB_WORKSPACE
-      #    WORKSPACE_DIR: $GITHUB_WORKSPACE
-#      - name: docker cp results
-#        run: docker compose cp /home/runner/work/o1js/o1js/data/perf.data.zip reporting:/app/perf-reporting/data/perf.data.zip
       - name: run the report
         run: docker run  -e PROOF_LEVEL=full -e LOG_LEVEL=Debug -e WORKSPACE_DIR=$WORKSPACE_DIR -v ./data:/app/perf-reporting/data2 --entrypoint "bash -x /app/perf-reporting/perf-report.sh" -it ghcr.io/meta-introspector/o1js/o1js-perf-recording:latest
         env:
