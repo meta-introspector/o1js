@@ -17,6 +17,8 @@ jobs:
           path: data
       # now run docker
       # mount the data into the container
+      - name: list pwd
+        run: pwd
       - name: list
         run: ls -latr data/*.zip
 
