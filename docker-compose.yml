@@ -17,9 +17,9 @@ services:
 
   reporting:
     restart: no
-    image: perf-reporting
-    build:
-      dockerfile: perf-reporting/Dockerfile.simple
+    image: ghcr.io/meta-introspector/o1js/o1js-perf-recording:latest
+   # build:
+  #dockerfile: perf-reporting/Dockerfile.simple
 #      dockerfile: perf-reporting/Dockerfile
       
     volumes:
