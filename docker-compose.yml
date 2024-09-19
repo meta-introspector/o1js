@@ -24,8 +24,8 @@ services:
       
     volumes:
       - type: bind
-        source: "${WORKSPACE_DIR}/data/perf.data.zip"
-        target: "/app/perf-reporting/perf.data.zip"
+        source: "/home/runner/work/o1js/o1js/data/"
+        target: "/app/perf-reporting/data/"
         
     environment:
       - PROOF_LEVEL=full
