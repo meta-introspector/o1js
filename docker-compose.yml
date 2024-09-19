@@ -18,7 +18,8 @@ services:
   reporting:
     restart: no
     image: perf-reporting
-    build: perf-reporting
+    build:
+      dockerfile: perf-reporting/Dockerfile
     volumes:
       - type: bind
         source: "$WORKSPACE_DIR/perf.data.zip"

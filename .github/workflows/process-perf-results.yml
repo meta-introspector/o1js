@@ -18,8 +18,8 @@ jobs:
       # mount the data into the container
 
       - uses: meta-introspector/checkout@v4
-        #with:
-        #  submodules: recursive
+        with:
+          submodules: recursive
 
       - name: Build the reporting Docker image via docker compose
         run: docker compose build reporting
