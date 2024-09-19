@@ -2,12 +2,14 @@ name: process_perf
 on:
   workflow_dispatch:
   push:
-  
+
+env:
+  WORKSPACE_DIR: $GITHUB_WORKSPACE
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      
+
       - name: Download a Build Artifact
         uses: meta-introspector/action-download-artifact@v6
         with:
@@ -16,13 +18,14 @@ jobs:
           skip_unpack: true
       # now run docker
       # mount the data into the container
-      
+
       - uses: meta-introspector/checkout@v4
-        with:
-          submodules: recursive
-          
+        #with:
+        #  submodules: recursive
+
       - name: Build the reporting Docker image via docker compose
         run: docker compose build reporting
-        
+        env:
+          WORKSPACE_DIR2: $GITHUB_WORKSPACE
       - name: run the report
         run: docker compose up reporting

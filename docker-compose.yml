@@ -21,10 +21,12 @@ services:
     build: perf-reporting
     volumes:
       - type: bind
-        source: "${{ github.workspace }}/perf.data.zip"
+        source: "$WORKSPACE_DIR/perf.data.zip"
         target: "/app/perf-reporting/perf.data.zip"
     environment:
       - PROOF_LEVEL=full
       - LOG_LEVEL=Debug
+      - WORKSPACE_DIR=$WORKSPACE_DIR
+
     working_dir: /app
     command: "bash -x /app/perf/reporting/perf-report.sh"
