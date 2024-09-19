@@ -22,10 +22,10 @@ services:
       dockerfile: perf-reporting/Dockerfile.simple
 #      dockerfile: perf-reporting/Dockerfile
       
-    volumes:
-      - type: bind
-        source: "/home/runner/work/o1js/o1js/data/"
-        target: "/app/perf-reporting/data/"
+    #volumes:
+    #  - type: bind
+    #    source: "/home/runner/work/o1js/o1js/data/"
+    #    target: "/app/perf-reporting/data/"
         
     environment:
       - PROOF_LEVEL=full
