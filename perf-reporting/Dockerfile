@@ -4,6 +4,7 @@ ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
 RUN apt update
 RUN apt install -y git
+run apt-get install -y linux-perf # move to top
 
 WORKDIR /app
 
@@ -31,22 +32,8 @@ COPY dune-project /app/dune-project
 RUN corepack enable
 RUN corepack prepare pnpm@latest-9 --activate
 RUN pnpm install
-#    "dev": "npx tsc -p tsconfig.test.json && node src/build/copy-to-dist.js",
-RUN npx tsc --help || echo 2
-RUN npx tsc --all || echo 2
-RUN npx tsc --version
-RUN npx tsc -p tsconfig.test.json
+#RUN pnpm run build
 
-#RUN pnpm install "https://github.com/meta-introspector/jest.git"
-#RUN pnpm install "https://github.com/meta-introspector/ts-jest.git"
-RUN pnpm install "https://github.com/meta-introspector/node-clinic-doctor"
-RUN pnpm install "https://github.com/meta-introspector/node-clinic"
-
-RUN pnpm run build
-
-#RUN apt update
-#RUN apt install -y strace
-run apt-get install -y linux-perf # move to top
 COPY run-jest-tests.sh /app/run-jest-tests.sh
 COPY jest.config.js /app/jest.config.js
 COPY run-integration-tests.sh /app/run-integration-tests.sh
@@ -56,20 +43,7 @@ COPY run /app/run
 COPY run-debug /app/run-debug
 COPY run-minimal-mina-tests.sh /app/run-minimal-mina-tests.sh
 COPY run-ci-benchmarks.sh /app/run-ci-benchmarks.sh
-COPY perf-report.sh /app/perf-report.sh
 
 # why?
 RUN ln -s /app/dist /app/src/mina-signer/dist
 
-# '/app/dist/node/bindings/compiled/_node_bindings/plonk_wasm.cjs' imported from /app/dist/node/bindings/js/node/node-backend.js
-# found here
-#./src/bindings/compiled/node_bindings/plonk_wasm.cjs
-#./src/bindings/compiled/_node_bindings/plonk_wasm.cjs
-#./dist/node/bindings/compiled/_node_bindings/plonk_wasm.cjs
-
-#run apt-get update
-
-
-CMD [ "pnpm", "run", "test" ]
-
-#RUN pnpm run test || echo skip errors

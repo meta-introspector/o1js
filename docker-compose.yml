@@ -14,4 +14,15 @@ services:
       - SYS_PTRACE
       - SYS_ADMIN
     command: "bash -x /app/run-all-tests.sh"
-    # strace -f -o /tmp/strace.txt
+
+  perf-reporting:
+    restart: no
+    image: perf-reporting
+    build: perf-reporting
+    volumes:
+      - perf.data.zip:/app/perf-reporting/perf.data.zip
+    environment:
+      - PROOF_LEVEL=full
+      - LOG_LEVEL=Debug
+    working_dir: /app
+    command: "bash -x /app/perf/reporting/perf-report.sh"
