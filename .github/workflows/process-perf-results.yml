@@ -18,7 +18,7 @@ jobs:
       # now run docker
       # mount the data into the container
       - name: list
-        run: ls -latr *.zip
+        run: ls -latr data/*.zip
 
       - uses: meta-introspector/checkout@v4
         #with:
