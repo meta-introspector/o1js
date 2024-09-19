@@ -7,5 +7,5 @@ run apt-get install -y linux-perf # move to top
 
 WORKDIR /app
 RUN mkdir -o /app/perf/reporting/
-COPY perf-report.sh /app/perf/reporting/perf-report.sh
+COPY perf-reporting/perf-report.sh /app/perf/reporting/perf-report.sh
 RUN ls /app/perf-reporting/perf.data.zip
