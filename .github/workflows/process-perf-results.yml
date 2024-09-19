@@ -8,14 +8,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-
-      # danger deletes all the data
+      - ​name​: ​Login to GHCR 
+​        ​uses​: ​meta-introspector/login-action@v1  
+​        ​with​: 
+​          ​registry​: ​ghcr.io 
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: pull the image
         run:  docker pull ghcr.io/meta-introspector/o1js/o1js-perf-recording:latest
-      #- uses: meta-introspector/checkout@v4
-        #with:
-        #  submodules: recursive
-
+      
       - name: Download a Build Artifact
         uses: meta-introspector/action-download-artifact@v6
         with:
