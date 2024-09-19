@@ -56,9 +56,8 @@ COPY run /app/run
 COPY run-debug /app/run-debug
 COPY run-minimal-mina-tests.sh /app/run-minimal-mina-tests.sh
 COPY run-ci-benchmarks.sh /app/run-ci-benchmarks.sh
-COPY perf-report.sh /app/perf-report.sh
 
-# why?
+# why is this needed?
 RUN ln -s /app/dist /app/src/mina-signer/dist
 
 # '/app/dist/node/bindings/compiled/_node_bindings/plonk_wasm.cjs' imported from /app/dist/node/bindings/js/node/node-backend.js
