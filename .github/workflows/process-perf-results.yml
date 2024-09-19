@@ -24,11 +24,11 @@ jobs:
       - name: Build the reporting Docker image via docker compose
         run: docker compose build reporting
         env:
-          WORKSPACE_DIR2: ${{ GITHUB_WORKSPACE  }}
-          WORKSPACE_DIR: ${{ GITHUB_WORKSPACE  }}
+          WORKSPACE_DIR2: $GITHUB_WORKSPACE
+          WORKSPACE_DIR: $GITHUB_WORKSPACE
 
       - name: run the report
         run: docker compose up reporting
         env:
-          WORKSPACE_DIR2: ${{ GITHUB_WORKSPACE  }}
-          WORKSPACE_DIR: ${{ GITHUB_WORKSPACE  }}
+          WORKSPACE_DIR2: $GITHUB_WORKSPACE
+          WORKSPACE_DIR: $GITHUB_WORKSPACE
