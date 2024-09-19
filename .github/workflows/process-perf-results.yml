@@ -1,8 +1,7 @@
 name: process_perf
 on:
   workflow_dispatch:
-  push:
-
+  push: test-perf
 jobs:
   build:
     runs-on: ubuntu-latest
