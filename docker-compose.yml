@@ -20,7 +20,9 @@ services:
     image: perf-reporting
     build: perf-reporting
     volumes:
-      - perf.data.zip:/app/perf-reporting/perf.data.zip
+      - type: bind
+        source: "${{ github.workspace }}/perf.data.zip"
+        target: "/app/perf-reporting/perf.data.zip"
     environment:
       - PROOF_LEVEL=full
       - LOG_LEVEL=Debug
