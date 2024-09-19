@@ -34,6 +34,7 @@ jobs:
         image_name: o1js-perf-recording
         tag_with_ref: true
         tag_with_sha: true
-        tags: main
+        #tags: main
+        tags: latest
         #path: ./test
         dockerfile: Dockerfile
