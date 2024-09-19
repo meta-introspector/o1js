@@ -7,7 +7,9 @@ ENV PATH="$PNPM_HOME:$PATH"
 
 WORKDIR /app
 
+RUN mkdir /app/perf-reporting/data
+
 # FIXME why do we have to copy the data in?
-COPY data /app/perf-reporting/data
+#COPY data /app/perf-reporting/data
 
 COPY perf-reporting/perf-report.sh /app/perf-reporting/perf-report.sh

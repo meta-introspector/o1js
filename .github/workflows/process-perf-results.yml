@@ -22,16 +22,29 @@ jobs:
       - name: list
         run: ls -latr data/*.zip
 
+      - name: list2
+        run: ls -latr /home/runner/work/o1js/o1js/data/perf.data.zip
+
       - uses: meta-introspector/checkout@v4
         #with:
         #  submodules: recursive
+
+      - name: list pwd
+        run: pwd
+      - name: list
+        run: ls -latr data/*.zip
+
+      - name: list2
+        run: ls -latr /home/runner/work/o1js/o1js/data/perf.data.zip
+
 
       - name: Build the reporting Docker image via docker compose
         run: docker compose build reporting
         env:
           WORKSPACE_DIR2: $GITHUB_WORKSPACE
           WORKSPACE_DIR: $GITHUB_WORKSPACE
-
+      - name: docker cp results
+        run: docker compose cp /home/runner/work/o1js/o1js/data/perf.data.zip reporting:/app/perf-reporting/data/perf.data.zip
       - name: run the report
         run: docker compose up reporting
         env:
