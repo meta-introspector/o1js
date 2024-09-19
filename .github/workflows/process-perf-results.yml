@@ -10,6 +10,7 @@ jobs:
       - name: Download a Build Artifact
         uses: meta-introspector/action-download-artifact@v6
         with:
+          workflow_search: true
           commit: 584fd53a9f50126360ab764537f4ae10bd5e3666
         # github_token: # optional, default is ${{github.token}}
           #workflow:  docker-image
