@@ -19,15 +19,19 @@ services:
     restart: no
     image: perf-reporting
     build:
-      dockerfile: perf-reporting/Dockerfile
+      dockerfile: perf-reporting/Dockerfile.simple
+#      dockerfile: perf-reporting/Dockerfile
+      
     volumes:
       - type: bind
-        source: "$WORKSPACE_DIR/perf.data.zip"
+        source: "perf.data.zip"
         target: "/app/perf-reporting/perf.data.zip"
+        
     environment:
       - PROOF_LEVEL=full
       - LOG_LEVEL=Debug
       - WORKSPACE_DIR=$WORKSPACE_DIR
 
     working_dir: /app
+    
     command: "bash -x /app/perf/reporting/perf-report.sh"
