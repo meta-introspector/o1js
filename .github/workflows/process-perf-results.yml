@@ -50,7 +50,7 @@ jobs:
 #      - name: docker cp results
 #        run: docker compose cp /home/runner/work/o1js/o1js/data/perf.data.zip reporting:/app/perf-reporting/data/perf.data.zip
       - name: run the report
-        run: docker compose up reporting
+        run: docker run  -e PROOF_LEVEL=full -e LOG_LEVEL=Debug -e WORKSPACE_DIR=$WORKSPACE_DIR -v ./data:/app/perf-reporting/data2 --entrypoint "bash -x /app/perf-reporting/perf-report.sh" -it ghcr.io/meta-introspector/o1js/o1js-perf-recording:latest
         env:
           WORKSPACE_DIR2: $GITHUB_WORKSPACE
           WORKSPACE_DIR: $GITHUB_WORKSPACE
