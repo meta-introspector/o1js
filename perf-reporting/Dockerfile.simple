@@ -8,4 +8,4 @@ run apt-get install -y linux-perf # move to top
 WORKDIR /app
 RUN mkdir -p /app/perf/reporting/
 COPY perf-reporting/perf-report.sh /app/perf/reporting/perf-report.sh
-RUN ls /app/perf-reporting/perf.data.zip
+#RUN ls /app/perf-reporting/perf.data.zip
