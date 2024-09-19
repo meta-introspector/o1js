@@ -15,9 +15,9 @@ export NODE_OPTIONS=--experimental-vm-modules
 #npx jest
 #clinic doctor -- node ./node_modules/.bin/../jest/bin/jest.js src/lib/provable/test/int.test.ts
 echo 2 > /proc/sys/kernel/perf_event_paranoid
-perf record -o perf.data -g  node --perf-basic-prof ./node_modules/.bin/../jest/bin/jest.js > reportout.txt 2> reporterr.txt
-perf script > perf_script.txt
-perf report > perf_report.txt
+perf record -o /tmp/perf.data -g  node --perf-basic-prof ./node_modules/.bin/../jest/bin/jest.js > reportout.txt 2> reporterr.txt
+#perf script > perf_script.txt
+#perf report > perf_report.txt
 #clinic doctor --collect-only -- node ./node_modules/jest-cli/bin/jest.js ./src/mina-signer/tests/rosetta.test.ts
 #clinic doctor --collect-only -- node ./node_modules/.pnpm/@jest+monorepo@https+++codeload.github.com+meta-introspector+jest+tar.gz+4a58402556ecd05ca9cc01873db6fbc5596ccc67/node_modules/@jest/monorepo/packages/jest-cli/bin/jest.js ./src/mina-signer/tests/rosetta.test.ts
 
