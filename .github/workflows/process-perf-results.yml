@@ -8,6 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      # danger deletes all the data
+      - uses: meta-introspector/checkout@v4
+        #with:
+        #  submodules: recursive
+
       - name: Download a Build Artifact
         uses: meta-introspector/action-download-artifact@v6
         with:
@@ -25,10 +30,6 @@ jobs:
       - name: list2
         run: ls -latr /home/runner/work/o1js/o1js/data/perf.data.zip
 
-      - uses: meta-introspector/checkout@v4
-        #with:
-        #  submodules: recursive
-
       - name: list pwd
         run: pwd
       - name: list
@@ -36,7 +37,6 @@ jobs:
 
       - name: list2
         run: ls -latr /home/runner/work/o1js/o1js/data/perf.data.zip
-
 
       - name: Build the reporting Docker image via docker compose
         run: docker compose build reporting

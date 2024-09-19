@@ -1,4 +1,6 @@
 # todo
 set | grep .
-ls -latr "/app/perf-reporting/perf.data.zip"
-unzip --verbose "/app/perf-reporting/perf.data.zip"
+find "/app/perf-reporting/"
+ls -latr "/app/perf-reporting/data/"
+ls -latr "/app/perf-reporting/data2/perf.data.zip"
+unzip --verbose "/app/perf-reporting/data2/perf.data.zip"
