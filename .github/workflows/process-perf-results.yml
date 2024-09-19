@@ -43,8 +43,8 @@ jobs:
         env:
           WORKSPACE_DIR2: $GITHUB_WORKSPACE
           WORKSPACE_DIR: $GITHUB_WORKSPACE
-      - name: docker cp results
-        run: docker compose cp /home/runner/work/o1js/o1js/data/perf.data.zip reporting:/app/perf-reporting/data/perf.data.zip
+#      - name: docker cp results
+#        run: docker compose cp /home/runner/work/o1js/o1js/data/perf.data.zip reporting:/app/perf-reporting/data/perf.data.zip
       - name: run the report
         run: docker compose up reporting
         env:
