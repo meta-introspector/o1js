@@ -24,7 +24,7 @@ services:
       
     volumes:
       - type: bind
-        source: "perf.data.zip"
+        source: "data/perf.data.zip"
         target: "/app/perf-reporting/perf.data.zip"
         
     environment:

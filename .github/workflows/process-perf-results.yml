@@ -14,8 +14,11 @@ jobs:
           workflow_search: true
           commit: 584fd53a9f50126360ab764537f4ae10bd5e3666
           skip_unpack: true
+          path: data
       # now run docker
       # mount the data into the container
+      - name: list
+        run: ls -latr *.zip
 
       - uses: meta-introspector/checkout@v4
         #with:
