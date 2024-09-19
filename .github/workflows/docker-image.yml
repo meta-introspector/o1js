@@ -24,17 +24,17 @@ jobs:
       run: docker compose build 
     - name: run the Docker tests
       run: docker compose up
-#    - name: docker cp strace.txt
-#      run: docker compose cp mina-local-network:/tmp/strace.txt strace.txt
-    - name: list files docker
-      run: docker compose run mina-local-network /bin/find /app/.clinic/
-    - name: docker cp strace.txt
-      run: docker compose cp mina-local-network:/app/.clinic clinic
-    - name: list files
-      run: find clinic
+    - name: docker cp results
+      run: docker compose cp mina-local-network:/tmp/perf.data perf.data
+    #- name: list files docker
+    #  run: docker compose run mina-local-network /bin/find /app/.clinic/
+    #- name: docker cp strace.txt
+    #  run: docker compose cp mina-local-network:/app/.clinic clinic
+    #- name: list files
+    #  run: find clinic
 
-    # - name: Archive code coverage results
-    #   uses: meta-introspector/upload-artifact@v4
-    #   with:
-    #       name: strace.txt
-    #       path: strace.txt
+    - name: Archive results
+      uses: meta-introspector/upload-artifact@v4
+      with:
+           name: perf.data
+           path: perf.data
