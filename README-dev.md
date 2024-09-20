@@ -317,3 +317,12 @@ PASS src/lib/mina/token.test.ts (46.054 s)
 
 
 perf report> report.txt
+
+# Architecture
+
+We have docker compose that is runnable locally and in github or gitlab.
+This allows for reproducible builds. 
+We name our local images the same as would be used in github so we have the same 
+references. We can test our code locally, faster.
+## Running test
+`docker compose up reporting-github`

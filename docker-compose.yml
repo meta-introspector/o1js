@@ -17,6 +17,7 @@ services:
 
   reporting:
     restart: no
+    image: ghcr.io/meta-introspector/o1js/o1js-perf-reporting:latest
     build:
       dockerfile: perf-reporting/Dockerfile.simple
       #dockerfile: perf-reporting/Dockerfile
@@ -33,7 +34,10 @@ services:
 
   reporting-github:
     restart: no
-    image: ghcr.io/meta-introspector/o1js/o1js-perf-recording:latest
+    image: ghcr.io/meta-introspector/o1js/o1js-perf-reporting:latest
+    build:
+      dockerfile: perf-reporting/Dockerfile.simple
+
     volumes:
       - type: bind
         source: "data"
