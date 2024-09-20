@@ -27,19 +27,12 @@ jobs:
           commit: 584fd53a9f50126360ab764537f4ae10bd5e3666
           skip_unpack: true
           path: data
-      - name: list pwd
-        run: pwd
-      - name: list
-        run: ls -latr data/*.zip
-      - name: list2
-        run: ls -latr /home/runner/work/o1js/o1js/data/perf.data.zip
-      - name: list pwd
-        run: pwd
-      - name: list
-        run: ls -latr data/*.zip
-      - name: list2
-        run: ls -latr /home/runner/work/o1js/o1js/data/perf.data.zip
-        # perf-reporting/perf-report.sh
+      - name: run the report
+        run: docker compose up --build reporting-github
+        env:
+          WORKSPACE_DIR2: $GITHUB_WORKSPACE
+          WORKSPACE_DIR: $GITHUB_WORKSPACE
+
       - name: run the report
         run: docker compose up --build reporting-github
         env:
