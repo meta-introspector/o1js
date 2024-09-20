@@ -22,10 +22,11 @@ then
 #    unzip /app/perf-reporting/input_data/perf.data.zip
 fi
 
-perf report --verbose --header > header.txt
-perf report --verbose --stats > stats.txt
+#perf report --verbose --header > header.txt
+#perf report --verbose --stats > stats.txt
+echo script
 perf script > perf_script.txt
-perf report --stdio > perf_report.txt
+#perf report --stdio > perf_report.txt
 
 
 #ls -latr /app/perf-reporting/data/

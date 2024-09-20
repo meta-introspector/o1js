@@ -358,6 +358,8 @@ you can also say
 `perf report --header-only > header.txt`
 `perf report --verbose --stats`
 
+Example
+```
 Aggregated stats:
            TOTAL events:    5528837
             MMAP events:         61  ( 0.0%)
@@ -378,3 +380,8 @@ Aggregated stats:
 cpu-clock:ppp stats:
           SAMPLE events:    5506199
 
+```
+
+# Summary
+
+This set of tools is for batch processing perf data.
