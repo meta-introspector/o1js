@@ -17,21 +17,31 @@ services:
 
   reporting:
     restart: no
-    image: ghcr.io/meta-introspector/o1js/o1js-perf-recording:latest
-   # build:
-  #dockerfile: perf-reporting/Dockerfile.simple
-#      dockerfile: perf-reporting/Dockerfile
-      
+    build:
+      dockerfile: perf-reporting/Dockerfile.simple
+      #dockerfile: perf-reporting/Dockerfile
     volumes:
       - type: bind
         source: "data"
-        target: "/app/perf-reporting/data2/"
-        
+        target: "/app/perf-reporting/data2/"       
     environment:
       - PROOF_LEVEL=full
       - LOG_LEVEL=Debug
       - WORKSPACE_DIR=$WORKSPACE_DIR
-
     working_dir: /app
-    
     command: "bash -x /app/perf-reporting/perf-report.sh"
+
+  reporting-github:
+    restart: no
+    image: ghcr.io/meta-introspector/o1js/o1js-perf-recording:latest
+    volumes:
+      - type: bind
+        source: "data"
+        target: "/app/perf-reporting/data2/"       
+    environment:
+      - PROOF_LEVEL=full
+      - LOG_LEVEL=Debug
+      - WORKSPACE_DIR=$WORKSPACE_DIR
+    working_dir: /app    
+    command: "bash -x /app/perf-reporting/perf-report.sh"
+

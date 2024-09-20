@@ -1,4 +1,4 @@
-FROM o1js-build:latest AS base
+FROM ghcr.io/meta-introspector/o1js/o1js-perf-recording:latest
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN apt update
@@ -6,8 +6,5 @@ RUN apt install -y unzip
 #run apt-get install -y linux-perf # move to top
 
 WORKDIR /app
-
 RUN mkdir -p /app/perf-reporting/data
-
-
 COPY perf-reporting/perf-report.sh /app/perf-reporting/perf-report.sh
