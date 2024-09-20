@@ -41,7 +41,7 @@ jobs:
         run: ls -latr /home/runner/work/o1js/o1js/data/perf.data.zip
         # perf-reporting/perf-report.sh
       - name: run the report
-        run: docker compose up reporting-github
+        run: docker compose up --build reporting-github
         env:
           WORKSPACE_DIR2: $GITHUB_WORKSPACE
           WORKSPACE_DIR: $GITHUB_WORKSPACE
