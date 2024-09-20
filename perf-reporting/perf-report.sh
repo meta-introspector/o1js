@@ -18,7 +18,7 @@ fi
 
 if [ ! -f  perf.data ]
 then
-    unzip /app/perf-reporting/input_data/perf-data.zip
+    unzip /app/perf-reporting/input_data/perf.data.zip
 fi
 
 perf report --verbose --header > header.txt
