@@ -25,7 +25,7 @@ fi
 #perf report --verbose --header > header.txt
 #perf report --verbose --stats > stats.txt
 echo script
-perf script > perf_script.txt
+perf script -F +pid > perf_script.txt
 #perf report --stdio > perf_report.txt
 
 
