@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: meta-introspector/checkout@v4
-        with:
-          #  submodules: recursive
+        #with:
+        #  submodules: recursive
       - name: Login to GHCR
         uses: meta-introspector/login-action@v1
         with:
