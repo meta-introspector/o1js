@@ -326,3 +326,55 @@ We name our local images the same as would be used in github so we have the same
 references. We can test our code locally, faster.
 ## Running test
 `docker compose up reporting-github`
+
+this uses the service reporting-github, 
+to run in the container /app/perf-reporting/perf-report.sh
+that copies perf-reporting/perf-report.sh into a temp new docker image.
+If you update that you need to run `docker compose build reporting-github`
+
+To test the run locally, you could use once it works, and been setup:
+
+in the file named ".secrets" put
+`GITHUB_TOKEN=github_pat_abcd`
+with your personal token from github. see https://github.com/nektos/act/issues/233
+
+checkout the git repo not in a submodule because act does not like them.
+
+`act --secret-file .secrets   -W .github/workflows/process-perf-results.yml --verbose`
+
+set-output:: artifacts=[{"id":1950791984,"node_id":"MDg6QXJ0aWZhY3QxOTUwNzkxOTg0","name":"perf.data","size_in_bytes":119031823,"url":"https://api.github.com/repos/meta-introspector/o1js/actions/artifacts/1950791984","archive_download_url":"","expired":false,"created_at":"2024-09-19T00:56:29Z","updated_at":"2024-09-19T00:56:29Z","expires_at":"2024-12-18T00:46:42Z","workflow_run":{"id":10932397620,"repository_id":857372173,"head_repository_id":857372173,"head_branch":"main","head_sha":"584fd53a9f50126360ab764537f4ae10bd5e3666"}}]
+
+That means we can download the data like this 
+`gh api https://api.github.com/repos/meta-introspector/o1js/actions/artifacts/1950791984/zip > data/perf-data.zip`
+
+Now we added a way to edit a script in the data directory.
+`o1js/perf-reporting/scripts/perf-report.sh` if we put the script in there it will be run when we run
+`docker compose up reporting-github;` This allows for iterative changes.
+
+you can also say 
+`docker compose up --build reporting-github;` This allows for iterative changes.
+
+
+`perf report --header-only > header.txt`
+`perf report --verbose --stats`
+
+Aggregated stats:
+           TOTAL events:    5528837
+            MMAP events:         61  ( 0.0%)
+            COMM events:          8  ( 0.0%)
+            EXIT events:        134  ( 0.0%)
+            FORK events:        133  ( 0.0%)
+          SAMPLE events:    5506199  (99.6%)
+           MMAP2 events:       3148  ( 0.1%)
+         KSYMBOL events:         25  ( 0.0%)
+       BPF_EVENT events:         24  ( 0.0%)
+: 
+  FINISHED_ROUND events:      19100  ( 0.3%)
+        ID_INDEX events:          1  ( 0.0%)
+      THREAD_MAP events:          1  ( 0.0%)
+         CPU_MAP events:          1  ( 0.0%)
+       TIME_CONV events:          1  ( 0.0%)
+   FINISHED_INIT events:          1  ( 0.0%)
+cpu-clock:ppp stats:
+          SAMPLE events:    5506199
+

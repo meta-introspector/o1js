@@ -41,7 +41,13 @@ services:
     volumes:
       - type: bind
         source: "data"
-        target: "/app/perf-reporting/data2/"       
+        target: "/app/perf-reporting/input_data/"       
+      - type: bind
+        source: "perf-reporting/output"
+        target: "/app/perf-reporting/output/"       
+      - type: bind
+        source: "perf-reporting/scripts"
+        target: "/app/perf-reporting/scripts/"       
     environment:
       - PROOF_LEVEL=full
       - LOG_LEVEL=Debug
