@@ -37,6 +37,8 @@ ls -latr /app/perf-reporting/output/untar/tmp/perf/
 
 mkdir -p ~/.debug
 
+mkdir -p /app/perf-reporting/output/results/
+
 for perfdata in /app/perf-reporting/output/untar/tmp/perf/*.perf.data;
 do
     echo "${perfdata}"
@@ -49,4 +51,6 @@ do
     ls -latr "${perfdata}"
 done
 
-ls -latr /app/perf-reporting/output/untar/tmp/perf/
+mv /app/perf-reporting/output/untar/tmp/perf/*.txt /app/perf-reporting/output/results/
+ls -latr /app/perf-reporting/output/results/
+tar -czf /app/perf-reporting/output/results.tgz  /app/perf-reporting/output/results/
