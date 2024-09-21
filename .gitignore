@@ -63,3 +63,4 @@ flycheck_*.el
 /.clinic/
 /_clinic/
 /.env
+/data/
