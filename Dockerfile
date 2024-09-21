@@ -3,7 +3,7 @@ ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
 RUN apt update
-RUN apt install -y git
+RUN apt install -y git bzip2
 
 WORKDIR /app
 
