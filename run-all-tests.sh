@@ -15,7 +15,33 @@ export NODE_OPTIONS=--experimental-vm-modules
 #npx jest
 #clinic doctor -- node ./node_modules/.bin/../jest/bin/jest.js src/lib/provable/test/int.test.ts
 echo 2 > /proc/sys/kernel/perf_event_paranoid
-perf record -o /tmp/perf.data -g  node --perf-basic-prof ./node_modules/.bin/../jest/bin/jest.js > reportout.txt 2> reporterr.txt
+
+
+
+# mdupont@mdupont-G470:~/2024/09/20/o1js$ grep PASS report1.txt
+# PASS src/lib/provable/test/merkle-list.test.ts (7.118 s)
+# PASS src/lib/provable/test/merkle-tree.test.ts (7.297 s)
+# PASS src/lib/provable/test/scalar.test.ts (7.623 s)
+# PASS src/lib/provable/test/merkle-map.test.ts (7.353 s)
+# PASS src/lib/provable/test/provable.test.ts (8.322 s)
+# PASS src/lib/provable/test/primitives.test.ts (8.346 s)
+# PASS src/lib/provable/test/group.test.ts (8.371 s)
+# PASS src/lib/provable/test/int.test.ts (8.64 s)
+# PASS src/lib/mina/precondition.test.ts (12.688 s)
+# PASS src/lib/mina/token.test.ts (46.593 s)
+
+mkdir /tmp/perf/
+TESTS="src/lib/provable/test/merkle-list.test.ts src/lib/provable/test/merkle-tree.test.ts src/lib/provable/test/scalar.test.ts  src/lib/provable/test/merkle-map.test.ts  src/lib/provable/test/provable.test.ts  src/lib/provable/test/primitives.test.ts  src/lib/provable/test/group.test.ts  src/lib/provable/test/int.test.ts  src/lib/mina/precondition.test.ts src/lib/mina/token.test.ts"
+for testname in $TESTS;
+
+do
+    perf record -o ${testname}.perf.data -F 999 --call-graph dwarf node --perf-basic-prof ./node_modules/.bin/../jest/bin/jest.js ${testname} > ${testname}.reportout.txt 2>&1
+    perf archive ${testname}.perf.data
+
+    cp ${testname}.* /tmp/perf/
+done
+
+tar -czf /tmp/perf.data.tar.gz /tmp/perf/*
 #perf script > perf_script.txt
 #perf report > perf_report.txt
 #clinic doctor --collect-only -- node ./node_modules/jest-cli/bin/jest.js ./src/mina-signer/tests/rosetta.test.ts
