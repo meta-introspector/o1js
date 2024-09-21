@@ -345,7 +345,7 @@ checkout the git repo not in a submodule because act does not like them.
 set-output:: artifacts=[{"id":1950791984,"node_id":"MDg6QXJ0aWZhY3QxOTUwNzkxOTg0","name":"perf.data","size_in_bytes":119031823,"url":"https://api.github.com/repos/meta-introspector/o1js/actions/artifacts/1950791984","archive_download_url":"","expired":false,"created_at":"2024-09-19T00:56:29Z","updated_at":"2024-09-19T00:56:29Z","expires_at":"2024-12-18T00:46:42Z","workflow_run":{"id":10932397620,"repository_id":857372173,"head_repository_id":857372173,"head_branch":"main","head_sha":"584fd53a9f50126360ab764537f4ae10bd5e3666"}}]
 
 That means we can download the data like this 
-`gh api https://api.github.com/repos/meta-introspector/o1js/actions/artifacts/1950791984/zip > data/perf-data.zip`
+`gh api https://api.github.com/repos/meta-introspector/o1js/actions/artifacts/1950791984/zip > data/perf.data.zip`
 
 Now we added a way to edit a script in the data directory.
 `o1js/perf-reporting/scripts/perf-report.sh` if we put the script in there it will be run when we run
@@ -385,3 +385,29 @@ cpu-clock:ppp stats:
 # Summary
 
 This set of tools is for batch processing perf data.
+
+
+# latest update
+
+`gh api https://api.github.com/repos/meta-introspector/o1js/actions/artifacts/1961929543/zip  > data/perf.data.zip`
+it contains
+perf.data.tar.gz
+
+This contains 
+`tmp/perf/group.test.ts.perf.data.tar.bz2`
+that is mounted in 
+`/app/perf-reporting/output/`
+
+
+it says in the logs
+```
+wherever you need to run 'perf report' on.
+mina-local-network-1  | + cp src/lib/provable/test/provable.test.ts.perf.data src/lib/provable/test/provable.test.ts.perf.data.tar.bz2 src/lib/provable/test/provable.test.ts.reportout.txt /tmp/perf/
+mina-local-network-1  | + for testname in $TESTS
+mina-local-network-1  | + perf record -o src/lib/provable/test/primitives.test.ts.perf.data -F 999 --call-graph dwarf node --perf-basic-prof ./node_modules/.bin/../jest/bin/jest.js src/lib/provable/test/primitives.test.ts
+mina-local-network-1  | + perf archive src/lib/provable/test/primitives.test.ts.perf.data
+mina-local-network-1  | Now please run:
+mina-local-network-1  | 
+mina-local-network-1  | $ tar xvf src/lib/provable/test/primitives.test.ts.perf.data.tar.bz2 -C ~/.debug
+
+```

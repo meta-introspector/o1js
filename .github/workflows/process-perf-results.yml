@@ -24,7 +24,7 @@ jobs:
         uses: meta-introspector/action-download-artifact@v6
         with:
           workflow_search: true
-          commit: 584fd53a9f50126360ab764537f4ae10bd5e3666
+          commit: 1ea14294b4a7a051ba0872de559658164d0aaae8
           skip_unpack: true
           path: data
       - name: run the report

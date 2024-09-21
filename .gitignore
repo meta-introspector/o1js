@@ -64,3 +64,6 @@ flycheck_*.el
 /_clinic/
 /.env
 /data/
+/perf-reporting/output/perf.data.tar.gz
+/perf-reporting/output/perf_script.txt
+/perf-reporting/output/tmp/
