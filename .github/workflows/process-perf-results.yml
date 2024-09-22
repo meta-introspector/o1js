@@ -46,3 +46,17 @@ jobs:
         with:
            name: results.tgz
            path: perf-reporting/output/results.tgz
+
+        # reporting-github-1  | + ls -latr /app/perf-reporting/output/
+
+      - name: Setup Pages
+        uses: meta-introspector/configure-pages@v3
+      - name: Upload Artifact
+        uses: meta-introspector/upload-pages-artifact@v2
+        with:
+          # upload entire directory
+          path: 'perf-reporting/output'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: meta-introspector/deploy-pages@v2
+
