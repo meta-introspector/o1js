@@ -69,3 +69,8 @@ flycheck_*.el
 /perf-reporting/output/tmp/
 /perf-reporting/output/untar/
 /perf-reporting/output/unzip/
+isolate-*.log
+ltrace.txt
+perf.data
+perf.data.old
+report.txt
