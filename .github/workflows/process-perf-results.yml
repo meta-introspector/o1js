@@ -5,7 +5,7 @@ on:
       commit_id:
         description: 'Commit to read results from'
         required: true
-        default: '1ea14294b4a7a051ba0872de559658164d0aaae8'
+        default: '5b13c202bbf6a196104ebb440678dd22037b6746'
   #push:
   #  branches:
   #    - test-perf
