@@ -1,6 +1,12 @@
 name: process perf results
 on:
-  workflow_dispatch: null
+  workflow_dispatch:
+    inputs:
+      commit_id:
+      description: 'Commit to read results from'
+      required: true
+      default: '1ea14294b4a7a051ba0872de559658164d0aaae8'
+
   push:
     branches:
       - test-perf
@@ -23,7 +29,7 @@ jobs:
         uses: meta-introspector/action-download-artifact@v6
         with:
           workflow_search: true
-          commit: 1ea14294b4a7a051ba0872de559658164d0aaae8
+          commit: ${{ inputs.commit_id }} 
           skip_unpack: true
           path: data
       - name: run the report
@@ -31,7 +37,6 @@ jobs:
         env:
           WORKSPACE_DIR2: $GITHUB_WORKSPACE
           WORKSPACE_DIR: $GITHUB_WORKSPACE
-
       - name: run the report
         run: docker compose up --build reporting-github
         env:
