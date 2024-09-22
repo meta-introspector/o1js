@@ -417,3 +417,5 @@ mina-local-network-1  | $ tar xvf src/lib/provable/test/primitives.test.ts.perf.
 
 `perf record  -g -F 999 --call-graph dwarf  node --perf-basic-prof ./node_modules/.bin/../jest/bin/jest.js src/lib/mina/token.test.ts`
 `perf report --stdio > report2.txt`
+
+`clinic doctor -- node --perf-basic-prof ./node_modules/.bin/../jest/bin/jest.js src/lib/mina/token.test.ts`
