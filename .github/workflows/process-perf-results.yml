@@ -1,5 +1,4 @@
----
-name: process_perf
+name: process perf results
 on:
   workflow_dispatch: null
   push:
@@ -38,7 +37,6 @@ jobs:
         env:
           WORKSPACE_DIR2: $GITHUB_WORKSPACE
           WORKSPACE_DIR: $GITHUB_WORKSPACE
-
       - name: Archive results
         uses: meta-introspector/upload-artifact@v4
         with:
