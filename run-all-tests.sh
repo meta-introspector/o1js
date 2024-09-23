@@ -35,10 +35,22 @@ TESTS="src/lib/provable/test/merkle-list.test.ts src/lib/provable/test/merkle-tr
 for testname in $TESTS;
 
 do
-    perf record -o ${testname}.perf.data -F 999 --call-graph dwarf node --perf-basic-prof ./node_modules/.bin/../jest/bin/jest.js ${testname} > ${testname}.reportout.txt 2>&1
+    perfdata=${testname}.perf.data
+    clinic flame -- node --perf-basic-prof ./node_modules/.bin/../jest/bin/jest.js ${testname}
+    clinic doctor -- node --perf-basic-prof ./node_modules/.bin/../jest/bin/jest.js ${testname}
+    clinic bubbleprof -- node --perf-basic-prof ./node_modules/.bin/../jest/bin/jest.js ${testname}
+    clinic heapprofiler -- node --perf-basic-prof ./node_modules/.bin/../jest/bin/jest.js ${testname}
+    
+    perf record -g -o ${testname}.perf.data -F 999 --call-graph dwarf node --perf-basic-prof ./node_modules/.bin/../jest/bin/jest.js ${testname} > ${testname}.reportout.txt 2>&1
     perf archive ${testname}.perf.data
+    perf report -i "${perfdata}" --verbose --stdio --header > "${perfdata}.header.txt" 2>&1
+    perf report -i "${perfdata}" --verbose --stdio --stats > "${perfdata}.stats.txt" 2>&1
+    perf script -F +pid -i "${perfdata}"  > "${perfdata}.script.txt" 2>&1
+    perf report --stdio -i "${perfdata}"  > "${perfdata}.report.txt" 2>&1
 
     cp ${testname}.* /tmp/perf/
+    mkdir /tmp/perf/clinic
+    cp -r .clinic/* /tmp/perf/clinic
 done
 
 tar -czf /tmp/perf.data.tar.gz /tmp/perf/*

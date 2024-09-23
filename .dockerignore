@@ -1,3 +1,6 @@
 .dockerignore
 .git
 Dockerfile
+_clinic
+data
+perf-reporting/output
