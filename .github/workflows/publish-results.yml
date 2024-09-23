@@ -33,17 +33,14 @@ jobs:
       - name: list
         run: |          
           unzip data/results.tgz.zip        
-          tar -xzf ./results.tgz
-          ls -latr data/
-          find .
+          tar -xzf ./results.tgz          
       
       - name: Setup Pages
         uses: meta-introspector/configure-pages@v5
       - name: Upload Artifact
         uses: meta-introspector/upload-pages-artifact@v5
-        with:
-          # upload entire directory
-          path: 'data'
+        with:          
+          path: 'app/perf-reporting/output/results'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: meta-introspector/deploy-pages@v4.1
