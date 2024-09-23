@@ -31,10 +31,9 @@ jobs:
           skip_unpack: true
           path: data
       - name: list
-        run: |
-          ls -latr data
-          find data        
-          unzip data/results.tgz.zip
+        run: |          
+          unzip data/results.tgz.zip        
+          tar -xzf ./results.tgz
           ls -latr data/
           find .
       
