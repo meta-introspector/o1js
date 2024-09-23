@@ -34,6 +34,9 @@ jobs:
         run: |
           ls -latr data
           find data        
+          unzip data/results.tgz.zip
+          ls -latr data/
+          find .
       
       - name: Setup Pages
         uses: meta-introspector/configure-pages@v5
