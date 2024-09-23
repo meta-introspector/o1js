@@ -30,6 +30,11 @@ jobs:
           commit: ${{ inputs.commit_id }} 
           skip_unpack: true
           path: data
+      - name: list
+        run: |
+          ls -latr data
+          find data        
+      
       - name: Setup Pages
         uses: meta-introspector/configure-pages@v5
       - name: Upload Artifact
