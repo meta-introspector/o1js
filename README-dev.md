@@ -1,3 +1,14 @@
+# Perf report
+
+The results of the job 
+https://github.com/meta-introspector/o1js/actions/workflows/publish-results.yml which takes a git commit of the source data as a parameter
+will be written to here as an index 
+https://meta-introspector.github.io/o1js/
+
+you can then pass those in as parameters to the firefox profiler for reading.
+https://profiler.firefox.com/from-url/https%3A%2F%2Fmeta-introspector.github.io%2Fo1js%2Fmerkle-tree.test.ts.perf.data.script.txt/calltree/?globalTrackOrder=0&hiddenLocalTracksByPid=67-5w8&thread=0&timelineType=category&v=10
+
+
 # o1js README-dev
 
 o1js is a TypeScript framework designed for zk-SNARKs and zkApps on the Mina blockchain.
