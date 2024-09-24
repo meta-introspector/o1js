@@ -1,5 +1,6 @@
 import { Field, Provable, Scalar, ScalarField } from 'o1js';
 
+describe('performance test', () => {for (let i = 0; i < 200; i++) {
 describe('scalar', () => {
   describe('scalar', () => {
     describe('Inside circuit', () => {
@@ -219,3 +220,4 @@ describe('scalar', () => {
     });
   });
 });
+}});

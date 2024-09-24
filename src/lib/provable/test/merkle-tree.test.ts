@@ -1,5 +1,6 @@
 import { Poseidon, Field, MerkleTree, MerkleWitness } from 'o1js';
 
+describe('performance test', () => {for (let i = 0; i < 200; i++) {
 describe('Merkle Tree', () => {
   it('root of empty tree of size 1', () => {
     const tree = new MerkleTree(1);
@@ -77,3 +78,4 @@ describe('Merkle Tree', () => {
     expect(witness.toJSON()).toEqual(expectedWitness);
   });
 });
+}});

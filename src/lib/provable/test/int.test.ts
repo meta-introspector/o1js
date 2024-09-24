@@ -9,6 +9,7 @@ import {
   Sign,
 } from 'o1js';
 
+describe(' performance test', () => {for (let i = 0; i < 200; i++) {
 describe('int', () => {
   const NUMBERMAX = 2 ** 53 - 1; //  JavaScript numbers can only safely store integers in the range -(2^53 − 1) to 2^53 − 1
 
@@ -2686,3 +2687,4 @@ describe('int', () => {
     });
   });
 });
+}});

@@ -1,4 +1,5 @@
 import { Field, Bool, Provable } from 'o1js';
+describe('performance test', () => {for (let i = 0; i < 200; i++) {
 describe('bool', () => {
   describe('inside circuit', () => {
     describe('toField', () => {
@@ -366,3 +367,4 @@ describe('bool', () => {
     });
   });
 });
+}});

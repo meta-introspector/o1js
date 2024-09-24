@@ -8,6 +8,7 @@ import {
   PublicKey,
 } from 'o1js';
 
+describe('performance test', () => {for (let i = 0; i < 200; i++) {
 describe('Provable', () => {
   it('Provable.if out of snark', () => {
     let x = Provable.if(Bool(false), Int64, Int64.from(-1), Int64.from(-2));
@@ -191,3 +192,4 @@ describe('Provable', () => {
     expect(reconstructed.toString()).toEqual(original.toString());
   });
 });
+}});
