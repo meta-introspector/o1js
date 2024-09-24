@@ -90,8 +90,14 @@ jobs:
           for x in data/*.zip; 
             do unzip $x;
           done
-          unzip data/results.tgz.zip        
-          tar -xzf ./results.tgz          
+          #unzip data/results.tgz.zip        
+          for x in *.tar.gz;       do
+            tar -xzf $x
+          done
+          for x in *.tgz;         do
+            tar -xzf $x
+          done
+          find .
           pushd app/perf-reporting/output/results/ 
           tree -H . -o index.html
           # cp index.txt app/perf-reporting/output/results/index.html 
