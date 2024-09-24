@@ -5,7 +5,7 @@ on:
   push:
     branches: [ "collect-perf" ]
   pull_request:
-    #branches: [ "main" ]
+    branches: [ "collect-perf" ]
 
 jobs:
 
