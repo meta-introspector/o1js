@@ -3,9 +3,9 @@ name: Build and Publish Docker image
 on:
   workflow_dispatch:
   push:
-    branches: [ "collect-perf" ]
+    branches: [ "build-image" ]
   pull_request:
-    #branches: [ "main" ]
+    branches: [ "build-image" ]
 
 jobs:
 
