@@ -3,7 +3,8 @@ version: '3'
 services:
   mina-local-network:
     restart: no
-    image: o1js-build
+    #image: o1js-build    
+    image: ghcr.io/meta-introspector/o1js/o1js-perf-reporting:latest
     build: .
     privileged: true
     environment:
