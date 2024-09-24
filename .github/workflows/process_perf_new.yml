@@ -1,4 +1,4 @@
-name: process perf results no docker
+name: process perf results no docker custom
 on:
   workflow_dispatch:
     inputs:
