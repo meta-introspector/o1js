@@ -97,16 +97,15 @@ jobs:
           #  tar -xzf $x
           #done
           find .
-          pushd app/perf-reporting/output/results/ 
-          tree -H . -o index.html
-          # cp index.txt app/perf-reporting/output/results/index.html 
+          pushd tmp/perf
+          tree -H . -o index.html          
       
       - name: Setup Pages
         uses: meta-introspector/configure-pages@v5
       - name: Upload Artifact
         uses: meta-introspector/upload-pages-artifact@v5
         with:          
-          path: 'app/perf-reporting/output/results'
+          path: 'tmp/perf'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: meta-introspector/deploy-pages@v4.1
