@@ -90,12 +90,12 @@ jobs:
             do unzip $x;
           done
           #unzip data/results.tgz.zip        
-          for x in *.tar.gz;       do
-            tar -xzf $x
-          done
-          for x in *.tgz;         do
-            tar -xzf $x
-          done
+          #for x in *.tar.gz;       do
+          tar -xvzf  perf.data.tar.gz 
+          #done
+          #for x in *.tgz;         do
+          #  tar -xzf $x
+          #done
           find .
           pushd app/perf-reporting/output/results/ 
           tree -H . -o index.html
