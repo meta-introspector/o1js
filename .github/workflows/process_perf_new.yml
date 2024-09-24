@@ -4,7 +4,6 @@ on:
     inputs:
       branch:
       #  description: 'Commit to read results from'
-      #  required: true
          default: 'main'
       #commit_id:
       #  description: 'Commit to read results from'
