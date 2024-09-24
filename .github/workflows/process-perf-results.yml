@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 name: process perf results
+=======
+name: process_perf
+>>>>>>> b06885ef4 (Update process-perf-results.yml)
 on:
   workflow_dispatch:
     inputs:
