@@ -32,8 +32,9 @@ echo 2 > /proc/sys/kernel/perf_event_paranoid
 
 mkdir /tmp/perf/
 TESTS="src/lib/provable/test/merkle-list.test.ts src/lib/provable/test/merkle-tree.test.ts src/lib/provable/test/scalar.test.ts  src/lib/provable/test/merkle-map.test.ts  src/lib/provable/test/provable.test.ts  src/lib/provable/test/primitives.test.ts  src/lib/provable/test/group.test.ts  src/lib/provable/test/int.test.ts  src/lib/mina/precondition.test.ts src/lib/mina/token.test.ts"
-for testname in $TESTS;
+export NO_INSIGHT=true
 
+for testname in $TESTS;
 do
     perfdata=${testname}.perf.data
     clinic flame -- node --perf-basic-prof ./node_modules/.bin/../jest/bin/jest.js ${testname}

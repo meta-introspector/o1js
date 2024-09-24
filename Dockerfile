@@ -32,15 +32,13 @@ RUN corepack enable
 RUN corepack prepare pnpm@latest-9 --activate
 RUN pnpm install
 #    "dev": "npx tsc -p tsconfig.test.json && node src/build/copy-to-dist.js",
-RUN npx tsc --help || echo 2
-RUN npx tsc --all || echo 2
-RUN npx tsc --version
 RUN npx tsc -p tsconfig.test.json
 
 #RUN pnpm install "https://github.com/meta-introspector/jest.git"
 #RUN pnpm install "https://github.com/meta-introspector/ts-jest.git"
-RUN pnpm install "https://github.com/meta-introspector/node-clinic-doctor"
-RUN pnpm install "https://github.com/meta-introspector/node-clinic"
+#RUN pnpm install "https://github.com/meta-introspector/node-clinic-doctor"
+#RUN pnpm install "https://github.com/meta-introspector/node-clinic"
+RUN pnpm install -g clinic
 
 RUN pnpm run build
 
