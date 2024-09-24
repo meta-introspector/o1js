@@ -1,5 +1,6 @@
 import { Field, MerkleList, Poseidon } from 'o1js';
 
+describe('performance test', () => {for (let i = 0; i < 200; i++) {
 describe('Merkle List and Iterator', () => {
   describe('primitive data structures', () => {
     const emptyHash = Poseidon.hash([Field(0)]);
@@ -97,3 +98,4 @@ describe('Merkle List and Iterator', () => {
     });
   });
 });
+}});

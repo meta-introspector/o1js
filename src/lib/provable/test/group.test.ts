@@ -1,5 +1,6 @@
 import { Bool, Group, Scalar, Provable } from 'o1js';
 
+describe(' performance test', () => {for (let i = 0; i < 200; i++) {
 describe('group', () => {
   let g = Group({ x: -1, y: 2 });
 
@@ -371,3 +372,4 @@ describe('group', () => {
     });
   });
 });
+}});

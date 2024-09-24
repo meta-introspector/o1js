@@ -1,5 +1,6 @@
 import { Field, MerkleMap } from 'o1js';
 
+describe('performance test', () => {for (let i = 0; i < 200; i++) {
 describe('Merkle Map', () => {
   it('set and get a value from a key', () => {
     const map = new MerkleMap();
@@ -36,3 +37,4 @@ describe('Merkle Map', () => {
     );
   });
 });
+}});
