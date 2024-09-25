@@ -1,9 +1,15 @@
 name: run Perf Test and collect data
-
+env:
+  default_image: "ghcr.io/meta-introspector/o1js/o1js-perf-recording:latest"
 on:
   workflow_dispatch:
+    inputs:
+      image_url:
+        description: 'Docker url to execute'
+        #default: "ghcr.io/meta-introspector/o1js/o1js-perf-recording:5ce0221662cecbca9a3de05601af94a15b154a3bcf8bafcb0cfa1f5b9f407bdc"
+        default: "ghcr.io/meta-introspector/o1js/o1js-perf-recording:latest"
   push:
-    branches: [ "collect-perf" ]
+    branches: [ "feature/just_test" ]
   pull_request:
     branches: [ "collect-perf" ]
 jobs:
@@ -11,8 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: meta-introspector/checkout@v4
-      with: 
-        submodules: recursive
+      #with: 
+      #  submodules: recursive
       
     - name: Login to GHCR
       uses: meta-introspector/login-action@v1
@@ -22,10 +28,12 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
         
     - name: pull the image
-      run: docker pull ghcr.io/meta-introspector/o1js/o1js-perf-recording:latest
+      run: docker pull ${{ inputs.image_url || env.default_image }}
       
     - name: run the Docker tests
       run: docker compose up mina-local-network
+      env:
+        DOCKER_IMAGE_URL: ${{ inputs.image_url || env.default_image}}         
       
     - name: docker cp results
       run: docker compose cp mina-local-network:/tmp/perf.data.tar.gz perf.data.tar.gz
