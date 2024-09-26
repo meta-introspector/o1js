@@ -32,15 +32,38 @@ jobs:
       run: docker pull ${{ inputs.image_url || env.default_image }}
       
     - name: run the Docker tests
-      run: docker compose up ${{ env.container_name }}
+      run: docker compose up ${{ env.container_name }}-test1 -e TESTS="/app/src/lib/provable/test/merkle-list.test.ts"
+      # /app/src/lib/provable/test/merkle-tree.test.ts /app/src/lib/provable/test/scalar.test.ts  /app/src/lib/provable/test/merkle-map.test.ts  /app/src/lib/provable/test/provable.test.ts  /app/src/lib/provable/test/primitives.test.ts  /app/src/lib/provable/test/group.test.ts  /app/src/lib/provable/test/int.test.ts  /app/src/lib/mina/precondition.test.ts"
       env:
-        DOCKER_IMAGE_URL: ${{ inputs.image_url || env.default_image}}         
-      
+        DOCKER_IMAGE_URL: ${{ inputs.image_url || env.default_image}}
     - name: docker cp results
       run: docker compose cp ${{ env.container_name }}:/tmp/perf.data.tar.gz perf.data.tar.gz
-
     - name: Archive results
       uses: meta-introspector/upload-artifact@v4
       with:
            name: perf.data.tar.gz
            path: perf.data.tar.gz
+    - name: delete the results
+      run: rm -rf /tmp/perf*
+    - name: delete the container
+      run: |
+        docker-compose down
+        docker rm -f $(docker ps -a -q)
+        docker volume rm $(docker volume ls -q)
+
+           
+    - name: run the Docker tests part 2
+      run: docker compose up ${{ env.container_name }}-test2
+      env:
+        DOCKER_IMAGE_URL: ${{ inputs.image_url || env.default_image}}
+        
+    - name: docker cp results
+      run: docker compose cp ${{ env.container_name }}:/tmp/perf.data.tar.gz perf.data2.tar.gz
+    - name: Archive results
+      uses: meta-introspector/upload-artifact@v4
+      with:
+           name: perf.data2.tar.gz
+           path: perf.data2.tar.gz
+
+      
+
