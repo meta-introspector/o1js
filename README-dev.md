@@ -395,38 +395,33 @@ cpu-clock:ppp stats:
 
 # Summary
 
-This set of tools is for batch processing perf data.
+This set of tools is for batch collecting and processing performance and coverage data customized for o1js mina.
 
+We have different github actions to create docker images.
 
-# latest update
+The long term goal is to be able to collect this performance information in the browser later, but for new we can run them locally, in github actions or on other platforms, planning on gitlab and any other cloud resources that are available. We will try other build platform first via docker images and then later on actual different hardware.
 
+To run a local test via docker just type in `make` to use the [Makefile](./Makefile) to run tests via docker. 
+
+### Creating docker images
+
+[Build and publish](.github/workflows/build-and-publish-docker-image.yml)
+
+### Using docker images to run jobs
+
+Then we take the resulting url of the docker image produces and pass it into
+the job defined here ["run Perf Test and collect data" .github/workflows/run-docker-tests.yml](.github/workflows/run-docker-tests.yml)
+to use the docker image
+
+### Useful Commands to download archives locally
+
+We can download an artifact from github using gh ai to basically authenticate a curl for us.
+
+This is an example of downloading an artifact directly, you can find examples in the github build logs for the jobs
 `gh api https://api.github.com/repos/meta-introspector/o1js/actions/artifacts/1961929543/zip  > data/perf.data.zip`
-it contains
-perf.data.tar.gz
 
-This contains 
-`tmp/perf/group.test.ts.perf.data.tar.bz2`
-that is mounted in 
-`/app/perf-reporting/output/`
-
-
-it says in the logs
-```
-wherever you need to run 'perf report' on.
-mina-local-network-1  | + cp src/lib/provable/test/provable.test.ts.perf.data src/lib/provable/test/provable.test.ts.perf.data.tar.bz2 src/lib/provable/test/provable.test.ts.reportout.txt /tmp/perf/
-mina-local-network-1  | + for testname in $TESTS
-mina-local-network-1  | + perf record -o src/lib/provable/test/primitives.test.ts.perf.data -F 999 --call-graph dwarf node --perf-basic-prof ./node_modules/.bin/../jest/bin/jest.js src/lib/provable/test/primitives.test.ts
-mina-local-network-1  | + perf archive src/lib/provable/test/primitives.test.ts.perf.data
-mina-local-network-1  | Now please run:
-mina-local-network-1  | 
-mina-local-network-1  | $ tar xvf src/lib/provable/test/primitives.test.ts.perf.data.tar.bz2 -C ~/.debug
-
-```
-
+In This version it contains perf.data.tar.gz, we have evolved the artifact contents so it will change to slightly different names in future versions. This documentation needs to be edited again to reflect that. 
 
 # next step
 
-`perf record  -g -F 999 --call-graph dwarf  node --perf-basic-prof ./node_modules/.bin/../jest/bin/jest.js src/lib/mina/token.test.ts`
-`perf report --stdio > report2.txt`
-
-`clinic doctor -- node --perf-basic-prof ./node_modules/.bin/../jest/bin/jest.js src/lib/mina/token.test.ts`
+See run-all-tests.sh for how we record and report on tests using clinic and perf and other tools as we add them.

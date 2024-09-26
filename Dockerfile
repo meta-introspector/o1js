@@ -32,30 +32,19 @@ RUN corepack enable
 RUN corepack prepare pnpm@latest-9 --activate
 RUN pnpm install
 #    "dev": "npx tsc -p tsconfig.test.json && node src/build/copy-to-dist.js",
-RUN npx tsc --help || echo 2
-RUN npx tsc --all || echo 2
-RUN npx tsc --version
 RUN npx tsc -p tsconfig.test.json
 
 #RUN pnpm install "https://github.com/meta-introspector/jest.git"
 #RUN pnpm install "https://github.com/meta-introspector/ts-jest.git"
-RUN pnpm install "https://github.com/meta-introspector/node-clinic-doctor"
-RUN pnpm install "https://github.com/meta-introspector/node-clinic"
+#RUN pnpm install "https://github.com/meta-introspector/node-clinic-doctor"
+#RUN pnpm install "https://github.com/meta-introspector/node-clinic"
+RUN pnpm install -g clinic
 
 RUN pnpm run build
 
 #RUN apt update
 #RUN apt install -y strace
 run apt-get install -y linux-perf # move to top
-COPY run-jest-tests.sh /app/run-jest-tests.sh
-COPY jest.config.js /app/jest.config.js
-COPY run-integration-tests.sh /app/run-integration-tests.sh
-COPY run-unit-tests.sh /app/run-unit-tests.sh
-COPY run-all-tests.sh /app/run-all-tests.sh
-COPY run /app/run
-COPY run-debug /app/run-debug
-COPY run-minimal-mina-tests.sh /app/run-minimal-mina-tests.sh
-COPY run-ci-benchmarks.sh /app/run-ci-benchmarks.sh
 
 # why is this needed?
 RUN ln -s /app/dist /app/src/mina-signer/dist
@@ -69,11 +58,10 @@ RUN ln -s /app/dist /app/src/mina-signer/dist
 #run apt-get update
 
 
-CMD [ "pnpm", "run", "test" ]
-
+#CMD [ "pnpm", "run", "test" ]
 #RUN pnpm run test || echo skip errors
 
-COPY . /app
+#COPY . /app
 WORKDIR /app
 
 FROM base AS prod-deps
@@ -86,6 +74,18 @@ RUN pnpm run build
 FROM base
 COPY --from=prod-deps /app/node_modules /app/node_modules
 COPY --from=build /app/dist /app/dist
+
+COPY run-jest-tests.sh /app/run-jest-tests.sh
+COPY jest.config.js /app/jest.config.js
+COPY run-integration-tests.sh /app/run-integration-tests.sh
+COPY run-unit-tests.sh /app/run-unit-tests.sh
+COPY run-all-tests.sh /app/run-all-tests.sh
+COPY run /app/run
+COPY run-debug /app/run-debug
+COPY run-minimal-mina-tests.sh /app/run-minimal-mina-tests.sh
+COPY run-ci-benchmarks.sh /app/run-ci-benchmarks.sh
+
+
 EXPOSE 8000
 CMD [ "pnpm", "start" ]
 
