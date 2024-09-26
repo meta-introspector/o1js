@@ -31,7 +31,7 @@ run_test() {
     testname=$1
     export MULTIPLE="${testname}"
     export perfdata="${testname}.perf.data"
-    OUTPUT_DIR2="${OUTPUT_DIR}/$testname/"
+    OUTPUT_DIR2="${OUTPUT_DIR}$testname/"
     mkdir -p "${OUTPUT_DIR2}clinic/"
     mkdir -p "${OUTPUT_DIR2}log/"
     mkdir -p "${OUTPUT_DIR2}coverage/"

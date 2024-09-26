@@ -3,7 +3,7 @@ version: '3'
 services:
   mina-local-network:
     restart: no
-    #image: o1js-build    
+    #image: o1js-build
     image: ghcr.io/meta-introspector/o1js/o1js-perf-recording:latest
     build: .
     privileged: true
@@ -15,7 +15,7 @@ services:
       - SYS_PTRACE
       - SYS_ADMIN
     command: "bash -x /app/run-all-tests.sh"
-    
+
   mixed-source:
     restart: no
     image: ghcr.io/meta-introspector/o1js/o1js-perf-recording:latest
@@ -24,16 +24,19 @@ services:
       - PROOF_LEVEL=full
       - LOG_LEVEL=Debug
     working_dir: /app
+    
     # mount the source
     volumes:
       - type: bind
         source: "/home/runner/work/o1js/o1js/"
-        target: "/app/source/"       
+        target: "/opt/introspector/test/"
+
     cap_add:
       - SYS_PTRACE
       - SYS_ADMIN
+
     # run the test from the mounted source
-    command: "bash -x /app/source/run-all-tests.sh"
+    command: "bash -x /opt/introspector/test/run-all-tests.sh"
 
   reporting:
     restart: no
@@ -44,7 +47,7 @@ services:
     volumes:
       - type: bind
         source: "data"
-        target: "/app/perf-reporting/data2/"       
+        target: "/app/perf-reporting/data2/"
     environment:
       - PROOF_LEVEL=full
       - LOG_LEVEL=Debug
@@ -61,17 +64,16 @@ services:
     volumes:
       - type: bind
         source: "data"
-        target: "/app/perf-reporting/input_data/"       
+        target: "/app/perf-reporting/input_data/"
       - type: bind
         source: "perf-reporting/output"
-        target: "/app/perf-reporting/output/"       
+        target: "/app/perf-reporting/output/"
       - type: bind
         source: "perf-reporting/scripts"
-        target: "/app/perf-reporting/scripts/"       
+        target: "/app/perf-reporting/scripts/"
     environment:
       - PROOF_LEVEL=full
       - LOG_LEVEL=Debug
       - WORKSPACE_DIR=$WORKSPACE_DIR
-    working_dir: /app    
+    working_dir: /app
     command: "bash -x /app/perf-reporting/perf-report.sh"
-
