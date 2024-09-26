@@ -30,42 +30,44 @@ jobs:
           - "/app/src/lib/mina/token.test.ts"
     runs-on: ubuntu-latest
     steps:
+    - name: Sets NAME
+      env:
+        name: "${{matrix.tests}}"
+      run: |
+        TEST_NAME1=`echo $name | sed -e 's!/!-!g' `
+        echo "TEST_NAME=test${TEST_NAME1}" >> $GITHUB_ENV
+
     - uses: meta-introspector/checkout@v4
-      #with: 
+      #with:
       #  submodules: recursive
-      
+
     - name: Login to GHCR
       uses: meta-introspector/login-action@v1
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-        
+
     - name: pull the image
       run: docker pull ${{ inputs.image_url || env.default_image }}
-      
+
     - name: run the Docker tests
       run: TESTS=${{matrix.tests}} docker compose up ${{ env.container_name }}
       env:
         DOCKER_IMAGE_URL: ${{ inputs.image_url || env.default_image}}
+
     - name: docker cp results
       run: docker compose cp ${{ env.container_name }}:/tmp/perf.data.tar.gz perf.data.tar.gz
-    - name: Sets NAME
-        env:
-          name: "${{matrix.tests}}"
-        run: |
-          echo "TEST_NAME=${name/\//-}" >> $GITHUB_ENV
+
     - name: Archive results
       uses: meta-introspector/upload-artifact@v4
       with:
-           name: ${{ env.TEST_NAME }}.perf.data.tar.gz
-           path: perf.data.tar.gz
+        name: ${{ env.TEST_NAME }}.perf.data.tar.gz
+        path: perf.data.tar.gz
+
     - name: delete the results
       run: rm -rf /tmp/perf*
+
     - name: delete the container
       run: |
-        docker compose down 
-           
-
-      
-
+        docker compose down
