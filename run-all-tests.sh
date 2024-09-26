@@ -61,8 +61,11 @@ run_test() {
 
 for testname in $TESTS;
 do
+    export MULTIPLE1="${testname}"
+    export perfdata1="${testname}.perf.data"
+    export OUTPUT_DIR3="${OUTPUT_DIR}$testname/"
     results=$(run_test $testname)
-    echo $results
+    echo $results > "${OUTPUT_DIR3}stdout.txt"
 done
 
 tar -czf /tmp/perf.data.tar.gz /tmp/perf/*
