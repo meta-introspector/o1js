@@ -1,6 +1,7 @@
 name: run Perf Test and collect data
 env:
   default_image: "ghcr.io/meta-introspector/o1js/o1js-perf-recording:latest"
+  container_name: "mixed-source"
 on:
   workflow_dispatch:
     inputs:
@@ -31,12 +32,12 @@ jobs:
       run: docker pull ${{ inputs.image_url || env.default_image }}
       
     - name: run the Docker tests
-      run: docker compose up mixed-source
+      run: docker compose up ${{ env.container_name }}
       env:
         DOCKER_IMAGE_URL: ${{ inputs.image_url || env.default_image}}         
       
     - name: docker cp results
-      run: docker compose cp mina-local-network:/tmp/perf.data.tar.gz perf.data.tar.gz
+      run: docker compose cp ${{ env.container_name }}:/tmp/perf.data.tar.gz perf.data.tar.gz
 
     - name: Archive results
       uses: meta-introspector/upload-artifact@v4
