@@ -60,7 +60,6 @@ jobs:
     - name: delete the container
       run: |
         docker compose down 
-        docker rm -f $(docker ps -a -q)
            
 
       
