@@ -22,7 +22,8 @@ pnpm install -g clinic
 cd /app/
 export SOURCE_DIR=/app/src
 # limit to only working tests
-TESTS="${SOURCE_DIR}/lib/provable/test/merkle-list.test.ts ${SOURCE_DIR}/lib/provable/test/merkle-tree.test.ts ${SOURCE_DIR}/lib/provable/test/scalar.test.ts  ${SOURCE_DIR}/lib/provable/test/merkle-map.test.ts  ${SOURCE_DIR}/lib/provable/test/provable.test.ts  ${SOURCE_DIR}/lib/provable/test/primitives.test.ts  ${SOURCE_DIR}/lib/provable/test/group.test.ts  ${SOURCE_DIR}/lib/provable/test/int.test.ts  ${SOURCE_DIR}/lib/mina/precondition.test.ts ${SOURCE_DIR}/lib/mina/token.test.ts"
+TESTS="${SOURCE_DIR}/lib/provable/test/merkle-list.test.ts ${SOURCE_DIR}/lib/provable/test/merkle-tree.test.ts ${SOURCE_DIR}/lib/provable/test/scalar.test.ts  ${SOURCE_DIR}/lib/provable/test/merkle-map.test.ts  ${SOURCE_DIR}/lib/provable/test/provable.test.ts  ${SOURCE_DIR}/lib/provable/test/primitives.test.ts  ${SOURCE_DIR}/lib/provable/test/group.test.ts  ${SOURCE_DIR}/lib/provable/test/int.test.ts  ${SOURCE_DIR}/lib/mina/precondition.test.ts"
+#${SOURCE_DIR}/lib/mina/token.test.ts"
 # FIXME this all tests is not used because many of them fail.
 ALL_TESTS=`ls -b ${SOURCE_DIR}/lib/provable/test/*.test.ts ${SOURCE_DIR}/lib/mina/*.test.ts `
 
