@@ -19,10 +19,12 @@ mkdir "${NODE_OUTPUT_DIR}"
 mkdir "${CLINIC_OUTPUT_DIR}"
 pnpm install -g clinic
 
+cd /app/
+export SOURCE_DIR=/app/src
 # limit to only working tests
-TESTS="src/lib/provable/test/merkle-list.test.ts src/lib/provable/test/merkle-tree.test.ts src/lib/provable/test/scalar.test.ts  src/lib/provable/test/merkle-map.test.ts  src/lib/provable/test/provable.test.ts  src/lib/provable/test/primitives.test.ts  src/lib/provable/test/group.test.ts  src/lib/provable/test/int.test.ts  src/lib/mina/precondition.test.ts src/lib/mina/token.test.ts"
+TESTS="${SOURCE_DIR}/lib/provable/test/merkle-list.test.ts ${SOURCE_DIR}/lib/provable/test/merkle-tree.test.ts ${SOURCE_DIR}/lib/provable/test/scalar.test.ts  ${SOURCE_DIR}/lib/provable/test/merkle-map.test.ts  ${SOURCE_DIR}/lib/provable/test/provable.test.ts  ${SOURCE_DIR}/lib/provable/test/primitives.test.ts  ${SOURCE_DIR}/lib/provable/test/group.test.ts  ${SOURCE_DIR}/lib/provable/test/int.test.ts  ${SOURCE_DIR}/lib/mina/precondition.test.ts ${SOURCE_DIR}/lib/mina/token.test.ts"
 # FIXME this all tests is not used because many of them fail.
-ALL_TESTS=`ls -b src/lib/provable/test/*.test.ts src/lib/mina/*.test.ts `
+ALL_TESTS=`ls -b ${SOURCE_DIR}/lib/provable/test/*.test.ts ${SOURCE_DIR}/lib/mina/*.test.ts `
 
 
 run_test() {
@@ -65,14 +67,5 @@ done
 
 tar -czf /tmp/perf.data.tar.gz /tmp/perf/*
 
-# + for f in ./src/**/*.test.ts
-#./src/lib/mina/precondition.test.ts
-#./src/lib/mina/token.test.ts
-#./src/lib/provable/test/primitives.test.ts
 
-# #######
-# NO_INSIGHT=true clinic flame -- node /usr/local/bin/pnpm run test
-# NO_INSIGHT=true clinic flame -- node /usr/local/bin/pnpm run test:integration
-# NO_INSIGHT=true clinic flame -- node /usr/local/bin/pnpm run test:unit
-# NO_INSIGHT=true clinic flame -- node /usr/local/bin/pnpm run test:e2e
 
