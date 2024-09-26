@@ -32,7 +32,7 @@ jobs:
       run: docker pull ${{ inputs.image_url || env.default_image }}
       
     - name: run the Docker tests
-      run: docker compose up ${{ env.container_name }}-test1 -e TESTS="/app/src/lib/provable/test/merkle-list.test.ts"
+      run: TESTS="/app/src/lib/provable/test/merkle-list.test.ts" docker compose up ${{ env.container_name }}
       # /app/src/lib/provable/test/merkle-tree.test.ts /app/src/lib/provable/test/scalar.test.ts  /app/src/lib/provable/test/merkle-map.test.ts  /app/src/lib/provable/test/provable.test.ts  /app/src/lib/provable/test/primitives.test.ts  /app/src/lib/provable/test/group.test.ts  /app/src/lib/provable/test/int.test.ts  /app/src/lib/mina/precondition.test.ts"
       env:
         DOCKER_IMAGE_URL: ${{ inputs.image_url || env.default_image}}
