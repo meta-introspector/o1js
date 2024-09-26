@@ -15,6 +15,25 @@ services:
       - SYS_PTRACE
       - SYS_ADMIN
     command: "bash -x /app/run-all-tests.sh"
+    
+  mixed-source:
+    restart: no
+    image: ghcr.io/meta-introspector/o1js/o1js-perf-recording:latest
+    privileged: true
+    environment:
+      - PROOF_LEVEL=full
+      - LOG_LEVEL=Debug
+    working_dir: /app
+    # mount the source
+    volumes:
+      - type: bind
+        source: "source"
+        target: "/app/source/"       
+    cap_add:
+      - SYS_PTRACE
+      - SYS_ADMIN
+    # run the test from the mounted source
+    command: "bash -x /app/source/run-all-tests.sh"
 
   reporting:
     restart: no

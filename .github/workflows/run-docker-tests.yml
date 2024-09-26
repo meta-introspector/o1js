@@ -31,7 +31,7 @@ jobs:
       run: docker pull ${{ inputs.image_url || env.default_image }}
       
     - name: run the Docker tests
-      run: docker compose up mina-local-network
+      run: docker compose up mixed-source
       env:
         DOCKER_IMAGE_URL: ${{ inputs.image_url || env.default_image}}         
       
