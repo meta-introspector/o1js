@@ -66,6 +66,10 @@ do
     export OUTPUT_DIR3="${OUTPUT_DIR}$testname/"
     results=$(run_test $testname)
     echo $results > "${OUTPUT_DIR3}stdout.txt"
+    tar -czvf "${OUTPUT_DIR}${testname}.tgz" "${OUTPUT_DIR3}"
+    # remove the intermediates for space saving.
+    rm -rf "${OUTPUT_DIR3}/"
+    ls -latr "${OUTPUT_DIR}"
 done
 
 tar -czf /tmp/perf.data.tar.gz /tmp/perf/*
