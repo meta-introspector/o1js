@@ -4,7 +4,7 @@ ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
 RUN apt update
 RUN apt install -y git bzip2
-
+run apt-get install -y linux-perf # move to top
 WORKDIR /app
 
 ADD pnpm-lock.yaml pnpm-lock.yaml
@@ -31,6 +31,7 @@ COPY dune-project /app/dune-project
 RUN corepack enable
 RUN corepack prepare pnpm@latest-9 --activate
 RUN pnpm install
+RUN npm install -g npm@10.8.3
 #    "dev": "npx tsc -p tsconfig.test.json && node src/build/copy-to-dist.js",
 RUN npx tsc -p tsconfig.test.json
 
@@ -42,26 +43,9 @@ RUN pnpm install -g clinic
 
 RUN pnpm run build
 
-#RUN apt update
-#RUN apt install -y strace
-run apt-get install -y linux-perf # move to top
-
 # why is this needed?
 RUN ln -s /app/dist /app/src/mina-signer/dist
 
-# '/app/dist/node/bindings/compiled/_node_bindings/plonk_wasm.cjs' imported from /app/dist/node/bindings/js/node/node-backend.js
-# found here
-#./src/bindings/compiled/node_bindings/plonk_wasm.cjs
-#./src/bindings/compiled/_node_bindings/plonk_wasm.cjs
-#./dist/node/bindings/compiled/_node_bindings/plonk_wasm.cjs
-
-#run apt-get update
-
-
-#CMD [ "pnpm", "run", "test" ]
-#RUN pnpm run test || echo skip errors
-
-#COPY . /app
 WORKDIR /app
 
 FROM base AS prod-deps
@@ -89,39 +73,4 @@ COPY run-ci-benchmarks.sh /app/run-ci-benchmarks.sh
 EXPOSE 8000
 CMD [ "pnpm", "start" ]
 
-
-
-# # Use an official Ubuntu image as a base
-# #FROM ubuntu:latest
-# FROM o1labs/mina-local-network:compatible-latest-devnet
-
-# # Set the working directory to /app
-# WORKDIR /app
-
-# # Install required dependencies
-# RUN apt update && apt install -y \
-#     git \
-#     curl \
-#     npm \
-#     nodejs
-
-# # Install Node.js version 18
-# RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
-# RUN apt-get install -y nodejs
-
-# # Clone the repository and checkout the specific branch
-# RUN git clone https://github.com/meta-introspector/o1js.git .
-# RUN git checkout 7647eb9
-
-# # Install npm dependencies
-# RUN npm ci
-
-# # Build o1js
-# RUN npm run build
-
-# # Expose the port for the web server
-# EXPOSE 8080
-
-# # Run the command to start the web server when the container launches
-# CMD ["npm", "run", "start"]
 

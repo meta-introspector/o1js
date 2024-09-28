@@ -1,4 +1,5 @@
 unit-tests:
+	BUILDKIT_PROGRESS=plain docker compose build mina-local-network # build base image
 	BUILDKIT_PROGRESS=plain TESTS="/app/dist/node/lib/util/base58.unit-test.js" docker compose build unit-tests
 	BUILDKIT_PROGRESS=plain TESTS="/app/dist/node/lib/util/base58.unit-test.js" docker compose up unit-tests
 
