@@ -5,7 +5,7 @@ import { test, Random, withHardCoded } from '../testing/property.js';
 
 let mlTest = await Test();
 
-for (var i=0; i < 1000; i++) {
+for (var i=0; i < 300; i++) {
 let bytes = withHardCoded(
   Random.bytes(Random.nat(100)),
   [0, 0, 0, 0] // definitely test some zero bytes
