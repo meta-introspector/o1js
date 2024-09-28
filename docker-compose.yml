@@ -72,7 +72,7 @@ services:
         target: "/opt/introspector/test/"
       - type: bind
         source: "."
-        target: "/app"
+        target: "/app/"
       - type: bind
         source: "./output/perf/"
         target: "/tmp/perf/"
@@ -80,7 +80,7 @@ services:
       - SYS_PTRACE
       - SYS_ADMIN
     # run the test from the mounted source
-    command: "bash -x /opt/introspector/test/run-all-unit-tests.sh"
+    command: "bash -x /opt/introspector/test/run-all-unit-tests-local.sh"
 
 
   reporting:

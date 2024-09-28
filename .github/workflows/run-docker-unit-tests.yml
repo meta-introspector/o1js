@@ -13,9 +13,9 @@ on:
       # add your branch here to auto trigger on push
       #- "feature/just_test"
       #- "feature/rebase"
-      - "feature/unit-tests"
-  pull_request:
-    branches: [ "collect-perf" ]
+      - "feature/unit-test-clean"
+#  pull_request:
+#    branches: [ "collect-perf" ]
 jobs:
   build:
     strategy:

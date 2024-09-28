@@ -438,4 +438,10 @@ We want to be able to :
 Run with current source code mounted to create a build and execution environment that is defined in docker
 but not needing to copy the source code in.
 
+So we first want to run locally with only the package list installed but no real source code
+`docker build --progress plain  -f Dockerfile.local` We can think of this as a foundational part.
+
+
+Later when this is all running we want to 
 Run with a copy of the source code so it is reproducible.
+
