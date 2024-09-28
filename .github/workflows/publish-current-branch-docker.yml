@@ -13,10 +13,10 @@ jobs:
       with: 
         submodules: recursive     
     - name: Build and Publish Docker image test
-      uses: meta-introspector/docker-bpgpr@1.0.0
+      uses: meta-introspector/docker-bpgpr@all-tags
       with:
         gh_token: ${{ secrets.GITHUB_TOKEN }}
-        image_name: o1js-perf-recording
+        image_name: o1js-perf-unit-test
         tag_with_ref: true        
-        tags: ${{ github.ref_name }}
+        #tags: ${{ github.ref_name }}
         dockerfile: Dockerfile
