@@ -1,4 +1,4 @@
-name: Build and Publish Cuurent Branch Docker image
+name: Build and Publish Current Branch Docker image
 on:
   workflow_dispatch:
   push:
