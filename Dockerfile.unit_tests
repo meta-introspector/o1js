@@ -1,0 +1,28 @@
+# use existing image, expect os to be the same
+FROM ghcr.io/meta-introspector/o1js/o1js-perf-recording:latest AS base
+
+#
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+WORKDIR /app
+
+# update the current code
+ADD pnpm-lock.yaml pnpm-lock.yaml
+ADD package.json package.json
+
+# install
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+RUN pnpm install
+
+WORKDIR /app
+
+FROM base AS prod-deps
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
+
+FROM base AS build
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+
+FROM base
+COPY --from=prod-deps /app/node_modules /app/node_modules
+

@@ -1,3 +1,11 @@
+# Goals and progress.
+
+1. Integrate into existing build system
+2. Have reproducible builds that work on localhost and also on github
+3. Create useful reports that are published on github or availably locally
+4. Create docker images for running and testing system
+5. Run tests inside and outside of docker
+
 # Perf report
 
 The results of the job 
