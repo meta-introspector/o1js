@@ -133,9 +133,10 @@ jobs:
         TEST_NAME1=`echo $name | sed -e 's!/!-!g' `
         echo "TEST_NAME=test${TEST_NAME1}" >> $GITHUB_ENV
 
+    # we need recursive code here because we replace the existing docker container
     - uses: meta-introspector/checkout@v4
-      #with:
-      #  submodules: recursive
+      with:
+        submodules: recursive
 
     - name: Login to GHCR
       uses: meta-introspector/login-action@v1
