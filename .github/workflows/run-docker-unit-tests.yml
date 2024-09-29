@@ -1,13 +1,14 @@
 name: run Perf Test and collect data
 env:
-  default_image: "ghcr.io/meta-introspector/o1js/o1js-perf-recording:latest"
+  #docker pull ghcr.io/meta-introspector/o1js/o1js-perf-unit-test:docker-image-unit-test-clean
+  default_image: "ghcr.io/meta-introspector/o1js/o1js-perf-unit-test:docker-image-unit-test-clean"
   container_name: "unit-tests"
 on:
   workflow_dispatch:
     inputs:
       image_url:
         description: 'Docker url to execute'
-        default: "ghcr.io/meta-introspector/o1js/o1js-perf-recording:latest"
+        default: "ghcr.io/meta-introspector/o1js/o1js-perf-unit-test:docker-image-unit-test-clean"
   push:
     branches:
       # add your branch here to auto trigger on push
