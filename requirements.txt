@@ -1,0 +1,1 @@
+-egit+https://github.com/meta-introspector/huggingface_hub_uploader#egg=huggingface_hub

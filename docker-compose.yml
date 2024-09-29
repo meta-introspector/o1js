@@ -126,3 +126,35 @@ services:
       - LOG_LEVEL=Debug
     working_dir: /app
     command: "bash -x /app/perf-reporting/perf-report.sh"
+
+  upload-hugging-face:
+    restart: no
+    image: ghcr.io/meta-introspector/o1js/o1js-huggingface-reporting:latest
+    secrets:
+      - hugging_face
+    build:
+      dockerfile: Dockerfile.huggingface
+    volumes:
+      - type: bind
+        source: "data"
+        target: "/app/perf-reporting/input_data/"
+      - type: bind
+        source: "perf-reporting/output"
+        target: "/app/perf-reporting/output/"
+      - type: bind
+        source: "perf-reporting/scripts"
+        target: "/app/perf-reporting/scripts/"
+      - type: bind
+        source: "."
+        target: "/app/"
+    environment:
+      - PROOF_LEVEL=full
+      - LOG_LEVEL=Debug
+      
+    working_dir: /app
+    command: "bash -x /app/perf-reporting/upload-huggingface.sh"
+
+
+secrets:
+  hugging_face:
+    environment: HF_TOKEN

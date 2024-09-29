@@ -78,3 +78,4 @@ perf.data
 perf.data.old
 report.txt
 /output/
+/perf-reporting/output/results.tgz
