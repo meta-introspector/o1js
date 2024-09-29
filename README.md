@@ -1,6 +1,13 @@
 # Performance tools for o1js.
 
-Github actions to build a docker image, and then run linux perf recordings of o1js executions of jest tests are currently available. Am working on reporting now. 
+Github actions to build a docker image, and then run linux perf recordings of o1js executions of jest tests are currently available, unit tests in native node are starting to be recorded. static reports published on github pages
+
+We are producing docker images, running the tests locally and on github in docker, and running reports as well, publishing the results to 
+github pages. 
+
+For example
+https://meta-introspector.github.io/o1js/clinic/2374.clinic-flame.html#selectedNode=20599&zoomedNode=&exclude=8fff-ffff-ffff-ffff-ffff-ffff-ff8f&merged=true shows a flame graph collected
+
 
 # o1js &nbsp; [![npm version](https://img.shields.io/npm/v/o1js.svg?style=flat)](https://www.npmjs.com/package/o1js) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/o1-labs/o1js/blob/main/CONTRIBUTING.md)
 
