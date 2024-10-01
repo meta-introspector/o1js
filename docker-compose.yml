@@ -21,7 +21,6 @@ services:
     environment:
       - PROOF_LEVEL=full
       - LOG_LEVEL=Debug
-      - TESTS=${TESTS}
     working_dir: /app
     # mount the source
     volumes:
@@ -43,7 +42,6 @@ services:
     environment:
       - PROOF_LEVEL=full
       - LOG_LEVEL=Debug
-      - TESTS=${TESTS}
     working_dir: /app
     # mount the source
     volumes:
@@ -69,7 +67,6 @@ services:
     environment:
       - PROOF_LEVEL=full
       - LOG_LEVEL=Debug
-      - TESTS=${TESTS}
     working_dir: /app
     # mount the source
     volumes:
@@ -110,7 +107,6 @@ services:
     image: ghcr.io/meta-introspector/o1js/o1js-perf-reporting:latest
     build:
       dockerfile: perf-reporting/Dockerfile.simple
-
     volumes:
       - type: bind
         source: "data"
@@ -128,7 +124,7 @@ services:
     command: "bash -x /app/perf-reporting/perf-report.sh"
 
   upload-hugging-face:
-    restart: no
+    #restart: no
     image: ghcr.io/meta-introspector/o1js/o1js-huggingface-reporting:latest
     secrets:
       - hugging_face
@@ -149,8 +145,7 @@ services:
         target: "/app/"
     environment:
       - PROOF_LEVEL=full
-      - LOG_LEVEL=Debug
-      
+      - LOG_LEVEL=Debug      
     working_dir: /app
     command: "bash -x /app/perf-reporting/upload-huggingface.sh"
 

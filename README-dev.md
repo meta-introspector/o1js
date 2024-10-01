@@ -2,9 +2,55 @@
 
 1. Integrate into existing build system
 2. Have reproducible builds that work on localhost and also on github
-3. Create useful reports that are published on github or availably locally
-4. Create docker images for running and testing system
-5. Run tests inside and outside of docker
+3. Create useful reports that are published on github or hugging face or availably locally
+Later support aws s3, archive.org, wikimedia, filecoin, ipfs and other cloud providers and hosting providers.
+4. Create docker images for running and testing system published to github and docker repos.
+5. Run reproducible tests inside and outside of docker
+Currently it is difficult to reproduce the tests of o1js in all environements, docker allows for that.
+
+## Running tests
+
+We can run tests and produce results in output/perf
+
+The results are named after the branch so we can bind the output/ directory to a hugging face repository 
+as a submodule. 
+
+## Hugging face upload
+1. create "write" token in hugging face
+2. set HF_TOKEN env variable
+
+```bash
+export HF_TOKEN=`cat ~/.huggingface/.token`
+```
+3. 
+
+outside of docker:
+```
+huggingface-cli login --token `cat ~/.huggingface/.token`
+```
+
+inside of docker compose 
+```
+huggingface-cli login --add-to-git-credential --token `cat /run/secrets/hugging_face`
+```
+
+Run a test
+```
+BUILDKIT_PROGRESS=plain TESTS="/app/dist/node/lib/util/base58.unit-test.js" docker compose build unit-tests-local 
+```
+
+Run the Upload in a separate docker container for the hugging face python uploader
+
+```
+BUILDKIT_PROGRESS=plain docker compose up upload-hugging-face
+```
+This uses docker-compose.yml to run 
+image: ghcr.io/meta-introspector/o1js/o1js-huggingface-reporting:latest to run     
+command: ("bash -x /app/perf-reporting/upload-huggingface.sh")[perf-reporting/upload-huggingface.sh]
+
+jump into docker container
+`BUILDKIT_PROGRESS=plain docker compose run upload-hugging-face bash`
+
 
 # Perf report
 

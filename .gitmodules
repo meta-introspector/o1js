@@ -7,3 +7,6 @@
 [submodule "vendor/jest"]
 	path = vendor/jest
 	url = https://github.com/meta-introspector/jest.git
+[submodule "huggingface/o1js-peformance-results"]
+	path = huggingface/o1js-peformance-results
+	url = https://huggingface.co/datasets/introspector/o1js-peformance-results
