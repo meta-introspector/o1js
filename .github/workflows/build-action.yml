@@ -117,12 +117,17 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        chunk: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32]
+        chunk: [
+        #1,2,3,4,5,6,7,8,9,10,11,12,
+        13
+        #,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32
+        ]
         perf: [
-        #prof, heap, cpu,
+        no,
+        prof, heap, cpu,
         all]
-        node_version: [18
-        #,20,22
+        node_version: [
+        18,20,22
         ]
     steps:
       - name: Restore repository
@@ -192,6 +197,12 @@ jobs:
 
           for ((i=start_index; i<end_index && i<${#test_files[@]}; i++)); do
               echo "Running test: ${test_files[$i]}"
+
+              # NO prof
+              if [ "${{ matrix.perf }}" == "no" ]; then
+              echo no prof
+            (node --enable-source-maps "${test_files[$i]}" | tee -a profiling.md) || echo skip errors
+              fi
 
               # cpu prof
               if [ "${{ matrix.perf }}" == "cpu" ]; then
