@@ -155,7 +155,7 @@ jobs:
           BRANCH_NAME: ${{ github.head_ref || github.ref_name }}           
         run: |
           MODIFIED_BRANCH_NAME=${BRANCH_NAME/\//-}
-          OUTPUT_DIR="profile/profile-data/${MODIFIED_BRANCH_NAME}/"
+          OUTPUT_DIR="profile/profile-data/${MODIFIED_BRANCH_NAME}"
           OUTPUT_TEST_DIR="${OUTPUT_DIR}/profile-data-${{matrix.chunk}}-${{ matrix.perf }}-${{ matrix.node_version }}"
 
           echo "MODIFIED_BRANCH_NAME=${MODIFIED_BRANCH_NAME}" >> "$GITHUB_ENV"
