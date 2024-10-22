@@ -69,18 +69,15 @@ jobs:
        perf: [     no,		              , heap, cpu, prof, all]
        node_version: [	        18,20,22        ]
        
-       test_type:
-         [
-#         'Simple integration tests',
-#         'Reducer integration tests',
-#         'DEX integration tests',
-#         'DEX integration test with proofs',
-         'Voting integration tests'
-         #,
-#         'Verification Key Regression Check 1',
-#         'Verification Key Regression Check 2',
-#         'CommonJS test',
-         ]
+       test_type:  [          'Voting integration tests' ]
+         #         'Simple integration tests',
+         #         'Reducer integration tests',
+         #         'DEX integration tests',
+         #         'DEX integration test with proofs',
+         #,'Verification Key Regression Check 1',
+         #         'Verification Key Regression Check 2',
+         #         'CommonJS test',
+         # ]
     steps:
       - name: Restore repository
         uses: actions/cache@v4
