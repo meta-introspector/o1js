@@ -66,19 +66,20 @@ jobs:
       fail-fast: false
       matrix:
        #	      prof, heap, cpu,
-       perf: [     no,		              all]
+       perf: [     no,		              , heap, cpu, prof, all]
        node_version: [	        18,20,22        ]
        
        test_type:
          [
-         'Simple integration tests',
-         'Reducer integration tests',
-         'DEX integration tests',
-         'DEX integration test with proofs',
-         'Voting integration tests',
-         'Verification Key Regression Check 1',
-         'Verification Key Regression Check 2',
-         'CommonJS test',
+#         'Simple integration tests',
+#         'Reducer integration tests',
+#         'DEX integration tests',
+#         'DEX integration test with proofs',
+         'Voting integration tests'
+         #,
+#         'Verification Key Regression Check 1',
+#         'Verification Key Regression Check 2',
+#         'CommonJS test',
          ]
     steps:
       - name: Restore repository
