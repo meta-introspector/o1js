@@ -66,7 +66,7 @@ jobs:
       fail-fast: false
       matrix:
        #	      prof, heap, cpu,
-       perf: [     no,		              , heap, cpu, prof, all]
+       perf: [ no, heap, cpu, prof, all ]
        node_version: [	        18,20,22        ]
        
        test_type:  [          'Voting integration tests' ]
@@ -136,9 +136,9 @@ jobs:
           mv isolate-*-v8.log  "${OUTPUT_TEST_DIR}" || echo ok
           mv Heap.*.heapprofile  "${OUTPUT_TEST_DIR}" || echo ok
           mv CPU.*.cpuprofile "${OUTPUT_TEST_DIR}" || echo ok
-          find -name \*log
-          find -name \*.cpuprofile
-          find -name \*.heapprofile
+          find . -name \*log
+          find . -name \*.cpuprofile
+          find . -name \*.heapprofile
         continue-on-error: true
 
       - name: Upload test results
